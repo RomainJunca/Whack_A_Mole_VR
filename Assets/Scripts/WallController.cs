@@ -18,7 +18,12 @@ public class WallController : MonoBehaviour {
         molesList = new List<GameObject>();
         putMolesInList(wall_with_moles);
 	}
-	
+
+    //TODO
+    //DO A RANDOM TIMER BEFORE APPEARING OF A MOLE
+    // !!!!!!!!!!!!!!!!!!!!!!!!!!
+    // (Could be changing for a future difficulty mode)
+
 	void Update () {
 
         gameObject.transform.position = new Vector3(cam.transform.position.x, cam.transform.position.y-1.5f, cam.transform.position.z + 1); //The wall follows the camera
