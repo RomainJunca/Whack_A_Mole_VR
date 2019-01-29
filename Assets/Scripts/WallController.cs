@@ -6,6 +6,7 @@ public class WallController : MonoBehaviour {
 
     public GameObject cam;
     public GameObject wall_with_moles;
+    public int redOdds = 4;
 
     private List<GameObject> molesList;
     private float timer = 1f;
@@ -61,8 +62,19 @@ public class WallController : MonoBehaviour {
 
     private void makeItShine(GameObject mole) //Make the mole shine in green or red
     {
+        Material currentMaterial;
+        int odds = Random.Range(0, redOdds);
+        if(odds != redOdds / 2)
+        {
+            currentMaterial = (Material)Resources.Load("Materials/green");
+        }
+        else
+        {
+            currentMaterial = (Material)Resources.Load("Materials/red");
+        }
+
         moleMaterial[0] = (Material)Resources.Load("Materials/mole");
-        moleMaterial[1] = (Material)Resources.Load("Materials/green");
+        moleMaterial[1] = currentMaterial;
         currentMole.GetComponent<MeshRenderer>().materials = moleMaterial;
     }
 
