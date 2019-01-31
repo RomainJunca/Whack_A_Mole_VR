@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class GameController : MonoBehaviour {
 
-	// Use this for initialization
+    public List<Mole> listMolesObjects;
+
 	void Start () {
 		
 	}
 	
-	// Update is called once per frame
 	void Update () {
 		
 	}

@@ -6,51 +6,47 @@ public class WallController : MonoBehaviour {
 
     public GameObject cam;
     public GameObject wall_with_moles;
-    public int redOdds = 4;
+    public GameObject spawnPoints;
+    public GameObject molePrefab;
+    public List<GameObject> molesList;
 
-    private List<GameObject> molesList;
-    private float timer = 1f;
+    private float timer;
+    private float rndTime = 1f;
     private GameObject currentMole;
-    private Material[] moleMaterial = new Material[2];
     private int indexCurrentMole;
+    private float moleLifeTime = 1f;
+    private bool start = true;
 
 	void Start () {
         molesList = new List<GameObject>();
-        putMolesInList(wall_with_moles);
+        generateMoles(spawnPoints, molePrefab, wall_with_moles);
 	}
-
-    //TODO
-    //DO A RANDOM TIMER BEFORE APPEARING OF A MOLE
-    // !!!!!!!!!!!!!!!!!!!!!!!!!!
-    // (Could be changing for a future difficulty mode)
 
 	void Update () {
 
         gameObject.transform.position = new Vector3(cam.transform.position.x, cam.transform.position.y-1.5f, cam.transform.position.z + 1); //The wall follows the camera
 
-        timer += Time.deltaTime;
-        if(timer >= 1.0f) //We select a new mole every second
-        {
-            if(currentMole != null)
+
+            timer += Time.deltaTime;
+            if (timer >= rndTime) //We select a new mole every random timer
             {
-                makeItNormal(currentMole);
+                currentMole = selectMole(molesList);
+                timer = 0.0f;
+                rndTime = generateTimer(3);
             }
-            currentMole = selectMole(molesList);
-            makeItShine(currentMole);
-            timer = 0.0f;
-        }
+
 
 	}
 
-    private void putMolesInList(GameObject listMoles)  //Put the moles in list
+    private void generateMoles(GameObject spawnpoints, GameObject prefab, GameObject wall) //We generate the moles on the spawnpoints
     {
-        foreach (Transform child in listMoles.transform)
+        foreach (Transform child in spawnpoints.transform) //We instantiate a mole for each spawn point
         {
-            molesList.Add(child.gameObject);
-            print(child.name);
+            GameObject clone = Instantiate(prefab, child.transform.position, Quaternion.identity) as GameObject;
+            clone.transform.SetParent(wall.transform);
+            clone.transform.localScale = new Vector3(0.001f, 0.001f, 0.001f);
+            molesList.Add(clone);
         }
-
-        print(molesList.Count);
     }
 
     private GameObject selectMole(List<GameObject> listMoles) //Select a random mole
@@ -59,34 +55,32 @@ public class WallController : MonoBehaviour {
         do
         {
             index = Random.Range(0, listMoles.Count);
-        } while (index == indexCurrentMole);
+            
+        }while(index == indexCurrentMole && listMoles[index].GetComponent<Mole>().isActive);
         indexCurrentMole = index;
+        listMoles[index].GetComponent<Mole>().isActive = true;
 
         return listMoles[indexCurrentMole];
     }
 
-    private void makeItShine(GameObject mole) //Make the mole shine in green or red
+    private float generateTimer(int lvl) //The timer before mole's appearance depending on the level
     {
-        Material currentMaterial;
-        int odds = Random.Range(0, redOdds);
-        if(odds != redOdds / 2)
+        if(lvl == 1)
         {
-            currentMaterial = (Material)Resources.Load("Materials/green");
+            return Random.Range(1f, 5f);
+        }
+        else if(lvl == 2)
+        {
+            return Random.Range(0.5f, 4f);
+        }
+        else if(lvl == 3)
+        {
+            return Random.Range(0.2f, 3f);
         }
         else
         {
-            currentMaterial = (Material)Resources.Load("Materials/red");
+            return 1f;
         }
-
-        moleMaterial[0] = (Material)Resources.Load("Materials/mole");
-        moleMaterial[1] = currentMaterial;
-        currentMole.GetComponent<MeshRenderer>().materials = moleMaterial;
     }
 
-    private void makeItNormal(GameObject mole) //Make the mole going back to normal
-    {
-        moleMaterial[0] = (Material)Resources.Load("Materials/mole");
-        moleMaterial[1] = null;
-        currentMole.GetComponent<MeshRenderer>().materials = moleMaterial;
-    }
 }
