@@ -6,6 +6,7 @@ public class Mole : MonoBehaviour{
 
     public bool isActive = false;
     public int redOdds = 8;
+    public AudioSource wii;
 
     private float lifeTime = 5f;
     private float timer = 0f;
@@ -15,7 +16,7 @@ public class Mole : MonoBehaviour{
 
     void Start()
     {
-        
+        wii = gameObject.GetComponent<AudioSource>();
     }
 
     void Update()
@@ -62,6 +63,9 @@ public class Mole : MonoBehaviour{
         moleMaterial[0] = (Material)Resources.Load("Materials/mole");
         moleMaterial[1] = currentMaterial;
         gameObject.GetComponent<MeshRenderer>().materials = moleMaterial;
+
+        wii.time = 0.52f; //Play directly at the beginning of the sound
+        wii.Play();
     }
 
     private void makeItNormal() //Make the mole going back to normal
