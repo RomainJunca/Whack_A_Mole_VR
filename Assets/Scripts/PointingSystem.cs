@@ -28,7 +28,7 @@ public class PointingSystem : MonoBehaviour
     Transform contactTarget = null;
 
 
-    public delegate bool OnPressTrigger(bool isAMole);
+    public delegate void OnPressTrigger(bool isAMole);
     public static event OnPressTrigger onPressTrigger;
 
     void Update()
