@@ -2,33 +2,35 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameController : MonoBehaviour {
+public class GameController : MonoBehaviour
+{
 
     public List<Mole> listMolesObjects;
 
-	void Start () {
-		PointingSystem.onPressTrigger += MoleWhackDetection;
-		PointingSystem.isPointingAtMole += IsPointingAtMole;
-	}
-	
-	void Update () {
-		
-	}
+    void Start()
+    {
+        PointingSystem.onPressTrigger += MoleWhackDetection;
+        PointingSystem.isPointingAtMole += IsPointingAtMole;
+    }
 
-	// This function will be called everytime the user is pressing the trigger
-	// If it hits a mole, then isAMole is true.
-	void MoleWhackDetection(bool isAMole) {
-		if(isAMole) {
-			// Do what you want when the user is whacking a mole
-		}
-		else {
-			//
-		}
-	}
+    void Update()
+    {
 
-	void IsPointingAtMole(bool isPointingAtMole) {
-		if(isPointingAtMole) {
-			// User is pointing at thte  mole with the controller
-		}
-	}
+    }
+
+    // This function will be called when the user is pressing the trigger on a mole only
+    void MoleWhackDetection(Collider mole)
+    {
+        print(mole);
+        // Here you get the whacked mole collider you can access the gameobject with
+        //mole.gameObject
+    }
+
+	// This functiom is called when the user is pointing at a mole
+    void IsPointingAtMole(Collider mole)
+    {
+        // Here you get the whacked mole collider you can access the gameobject with
+        //mole.gameObject
+        print(mole);
+    }
 }
