@@ -8,39 +8,39 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: efa7deb1b26fa794e955e7c60218bbe9, type: 3}
+  m_Script: {fileID: 11500000, guid: 6599e7e1ab55893489d97aae0c58c338, type: 3}
   m_Name: __actions_default
   m_EditorClassIdentifier: 
   allActions:
-  - {fileID: 11400000, guid: 5292a83604127ee4e9edf66d7c4a31d3, type: 2}
-  - {fileID: 11400000, guid: 4a1680cb850ad144bb52771df465d8a1, type: 2}
-  - {fileID: 11400000, guid: 3c042d976ae57914f93c9f9dbc6ded5a, type: 2}
-  - {fileID: 11400000, guid: 5408e122e2fa4c44a98138f1b27efa21, type: 2}
-  - {fileID: 11400000, guid: 7a7ed54b0934b914f9786e513c4693b1, type: 2}
-  - {fileID: 11400000, guid: 9d8672c997acc8c4a8d57c4db9815d6d, type: 2}
-  - {fileID: 11400000, guid: 9dcb0915522062944a74b741787b9c99, type: 2}
-  - {fileID: 11400000, guid: b2c07cff8df44034daad7fe740cd06e0, type: 2}
-  - {fileID: 11400000, guid: 8065e27d4bcd3c74bac739c5aef4ecc6, type: 2}
+  - {fileID: 11400000, guid: 68b5eb8660603ef4ca3d5ac796f9bacd, type: 2}
+  - {fileID: 11400000, guid: 3d590c9bb17711c43bbbe56737026a6a, type: 2}
+  - {fileID: 11400000, guid: 9c22a34f8ffc7e645a7baa458cb22bf6, type: 2}
+  - {fileID: 11400000, guid: ef714db0caed18148ade5c49cb1e6bf1, type: 2}
+  - {fileID: 11400000, guid: e75bb407023fe1347800edc943c8af59, type: 2}
+  - {fileID: 11400000, guid: 5a908a6818aa36940b1b4b11fa9a81cb, type: 2}
+  - {fileID: 11400000, guid: 55116c097c87357499156ef99c9d3511, type: 2}
+  - {fileID: 11400000, guid: aace50e9087655d4ca3176a901f855a2, type: 2}
+  - {fileID: 11400000, guid: 7dc9de1e651215749a332f4347e65ff3, type: 2}
   nonVisualInActions:
-  - {fileID: 11400000, guid: 5292a83604127ee4e9edf66d7c4a31d3, type: 2}
-  - {fileID: 11400000, guid: 4a1680cb850ad144bb52771df465d8a1, type: 2}
-  - {fileID: 11400000, guid: 3c042d976ae57914f93c9f9dbc6ded5a, type: 2}
-  - {fileID: 11400000, guid: 5408e122e2fa4c44a98138f1b27efa21, type: 2}
-  - {fileID: 11400000, guid: b2c07cff8df44034daad7fe740cd06e0, type: 2}
+  - {fileID: 11400000, guid: 68b5eb8660603ef4ca3d5ac796f9bacd, type: 2}
+  - {fileID: 11400000, guid: 3d590c9bb17711c43bbbe56737026a6a, type: 2}
+  - {fileID: 11400000, guid: 9c22a34f8ffc7e645a7baa458cb22bf6, type: 2}
+  - {fileID: 11400000, guid: ef714db0caed18148ade5c49cb1e6bf1, type: 2}
+  - {fileID: 11400000, guid: aace50e9087655d4ca3176a901f855a2, type: 2}
   visualActions:
-  - {fileID: 11400000, guid: 7a7ed54b0934b914f9786e513c4693b1, type: 2}
-  - {fileID: 11400000, guid: 9d8672c997acc8c4a8d57c4db9815d6d, type: 2}
-  - {fileID: 11400000, guid: 9dcb0915522062944a74b741787b9c99, type: 2}
+  - {fileID: 11400000, guid: e75bb407023fe1347800edc943c8af59, type: 2}
+  - {fileID: 11400000, guid: 5a908a6818aa36940b1b4b11fa9a81cb, type: 2}
+  - {fileID: 11400000, guid: 55116c097c87357499156ef99c9d3511, type: 2}
   poseActions:
-  - {fileID: 11400000, guid: 7a7ed54b0934b914f9786e513c4693b1, type: 2}
-  - {fileID: 11400000, guid: 9d8672c997acc8c4a8d57c4db9815d6d, type: 2}
-  - {fileID: 11400000, guid: 9dcb0915522062944a74b741787b9c99, type: 2}
+  - {fileID: 11400000, guid: e75bb407023fe1347800edc943c8af59, type: 2}
+  - {fileID: 11400000, guid: 5a908a6818aa36940b1b4b11fa9a81cb, type: 2}
+  - {fileID: 11400000, guid: 55116c097c87357499156ef99c9d3511, type: 2}
   skeletonActions:
-  - {fileID: 11400000, guid: 9d8672c997acc8c4a8d57c4db9815d6d, type: 2}
-  - {fileID: 11400000, guid: 9dcb0915522062944a74b741787b9c99, type: 2}
+  - {fileID: 11400000, guid: 5a908a6818aa36940b1b4b11fa9a81cb, type: 2}
+  - {fileID: 11400000, guid: 55116c097c87357499156ef99c9d3511, type: 2}
   outActionArray:
-  - {fileID: 11400000, guid: 8065e27d4bcd3c74bac739c5aef4ecc6, type: 2}
+  - {fileID: 11400000, guid: 7dc9de1e651215749a332f4347e65ff3, type: 2}
   fullPath: /actions/default
   usage: single
-  inActions: {fileID: 11400000, guid: 80d0e3644c0bbf149aff4f9613445f2f, type: 2}
-  outActions: {fileID: 11400000, guid: 7670183bd392ea4458667f480d1f39d0, type: 2}
+  inActions: {fileID: 11400000, guid: a3062dc93aff6404d8ced516d9223397, type: 2}
+  outActions: {fileID: 11400000, guid: c204a4193a0a9c6489624838341d2899, type: 2}

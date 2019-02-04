@@ -882,10 +882,10 @@ MonoBehaviour:
   otherHand: {fileID: 11450312}
   handType: 2
   trackedObject: {fileID: 0}
-  grabPinchAction: {fileID: 11400000, guid: 3c042d976ae57914f93c9f9dbc6ded5a, type: 2}
-  grabGripAction: {fileID: 11400000, guid: 5408e122e2fa4c44a98138f1b27efa21, type: 2}
-  hapticAction: {fileID: 11400000, guid: 8065e27d4bcd3c74bac739c5aef4ecc6, type: 2}
-  uiInteractAction: {fileID: 11400000, guid: 5292a83604127ee4e9edf66d7c4a31d3, type: 2}
+  grabPinchAction: {fileID: 11400000, guid: 9c22a34f8ffc7e645a7baa458cb22bf6, type: 2}
+  grabGripAction: {fileID: 11400000, guid: ef714db0caed18148ade5c49cb1e6bf1, type: 2}
+  hapticAction: {fileID: 11400000, guid: 7dc9de1e651215749a332f4347e65ff3, type: 2}
+  uiInteractAction: {fileID: 11400000, guid: 68b5eb8660603ef4ca3d5ac796f9bacd, type: 2}
   useHoverSphere: 1
   hoverSphereTransform: {fileID: 480432}
   hoverSphereRadius: 0.075
@@ -935,10 +935,10 @@ MonoBehaviour:
   otherHand: {fileID: 11401046}
   handType: 1
   trackedObject: {fileID: 0}
-  grabPinchAction: {fileID: 11400000, guid: 3c042d976ae57914f93c9f9dbc6ded5a, type: 2}
-  grabGripAction: {fileID: 11400000, guid: 5408e122e2fa4c44a98138f1b27efa21, type: 2}
-  hapticAction: {fileID: 11400000, guid: 8065e27d4bcd3c74bac739c5aef4ecc6, type: 2}
-  uiInteractAction: {fileID: 11400000, guid: 5292a83604127ee4e9edf66d7c4a31d3, type: 2}
+  grabPinchAction: {fileID: 11400000, guid: 9c22a34f8ffc7e645a7baa458cb22bf6, type: 2}
+  grabGripAction: {fileID: 11400000, guid: ef714db0caed18148ade5c49cb1e6bf1, type: 2}
+  hapticAction: {fileID: 11400000, guid: 7dc9de1e651215749a332f4347e65ff3, type: 2}
+  uiInteractAction: {fileID: 11400000, guid: 68b5eb8660603ef4ca3d5ac796f9bacd, type: 2}
   useHoverSphere: 1
   hoverSphereTransform: {fileID: 4000012325712216}
   hoverSphereRadius: 0.075
@@ -1113,7 +1113,7 @@ MonoBehaviour:
   controllerMaterial: {fileID: 2100000, guid: 11b050e661ec0cf48a289a7266451e91, type: 2}
   flashColor: {r: 1, g: 0.9170069, b: 0.453, a: 0.709}
   textHintPrefab: {fileID: 140952, guid: 5fa42bb9e52706a42b8a1eaf0b54326a, type: 2}
-  hapticFlash: {fileID: 11400000, guid: 8065e27d4bcd3c74bac739c5aef4ecc6, type: 2}
+  hapticFlash: {fileID: 11400000, guid: 7dc9de1e651215749a332f4347e65ff3, type: 2}
   debugHints: 0
 --- !u!114 &11494192
 MonoBehaviour:
@@ -1129,7 +1129,7 @@ MonoBehaviour:
   controllerMaterial: {fileID: 2100000, guid: 11b050e661ec0cf48a289a7266451e91, type: 2}
   flashColor: {r: 1, g: 0.9170069, b: 0.453, a: 0.709}
   textHintPrefab: {fileID: 140952, guid: 5fa42bb9e52706a42b8a1eaf0b54326a, type: 2}
-  hapticFlash: {fileID: 11400000, guid: 8065e27d4bcd3c74bac739c5aef4ecc6, type: 2}
+  hapticFlash: {fileID: 11400000, guid: 7dc9de1e651215749a332f4347e65ff3, type: 2}
   debugHints: 0
 --- !u!114 &11497470
 MonoBehaviour:
@@ -1145,10 +1145,10 @@ MonoBehaviour:
   otherHand: {fileID: 0}
   handType: 0
   trackedObject: {fileID: 0}
-  grabPinchAction: {fileID: 11400000, guid: 3c042d976ae57914f93c9f9dbc6ded5a, type: 2}
-  grabGripAction: {fileID: 11400000, guid: 5408e122e2fa4c44a98138f1b27efa21, type: 2}
-  hapticAction: {fileID: 11400000, guid: 8065e27d4bcd3c74bac739c5aef4ecc6, type: 2}
-  uiInteractAction: {fileID: 11400000, guid: 5292a83604127ee4e9edf66d7c4a31d3, type: 2}
+  grabPinchAction: {fileID: 11400000, guid: 9c22a34f8ffc7e645a7baa458cb22bf6, type: 2}
+  grabGripAction: {fileID: 11400000, guid: ef714db0caed18148ade5c49cb1e6bf1, type: 2}
+  hapticAction: {fileID: 11400000, guid: 7dc9de1e651215749a332f4347e65ff3, type: 2}
+  uiInteractAction: {fileID: 11400000, guid: 68b5eb8660603ef4ca3d5ac796f9bacd, type: 2}
   useHoverSphere: 1
   hoverSphereTransform: {fileID: 0}
   hoverSphereRadius: 0.05
@@ -1358,7 +1358,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27991c206a5e66147bb8ee3ef31c8bac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  actionSet: {fileID: 11400000, guid: 6cb2de64062f9344a97a99585f5bd98c, type: 2}
+  actionSet: {fileID: 11400000, guid: 4d86a579e5ca788459744e29d9b18d96, type: 2}
   disableAllOtherActionSets: 0
   activateOnStart: 1
   deactivateOnDestroy: 1
@@ -1395,7 +1395,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a5fb0ca93b55ef4b8d54b512b103341, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  poseAction: {fileID: 11400000, guid: 7a7ed54b0934b914f9786e513c4693b1, type: 2}
+  poseAction: {fileID: 11400000, guid: e75bb407023fe1347800edc943c8af59, type: 2}
   inputSource: 1
   origin: {fileID: 0}
   onTransformUpdated:
@@ -1429,7 +1429,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a5fb0ca93b55ef4b8d54b512b103341, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  poseAction: {fileID: 11400000, guid: 7a7ed54b0934b914f9786e513c4693b1, type: 2}
+  poseAction: {fileID: 11400000, guid: e75bb407023fe1347800edc943c8af59, type: 2}
   inputSource: 2
   origin: {fileID: 0}
   onTransformUpdated:

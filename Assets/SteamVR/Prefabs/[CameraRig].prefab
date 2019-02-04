@@ -345,7 +345,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a5fb0ca93b55ef4b8d54b512b103341, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  poseAction: {fileID: 11400000, guid: 7a7ed54b0934b914f9786e513c4693b1, type: 2}
+  poseAction: {fileID: 11400000, guid: e75bb407023fe1347800edc943c8af59, type: 2}
   inputSource: 2
   origin: {fileID: 0}
   onTransformUpdated:
@@ -379,7 +379,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a5fb0ca93b55ef4b8d54b512b103341, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  poseAction: {fileID: 11400000, guid: 7a7ed54b0934b914f9786e513c4693b1, type: 2}
+  poseAction: {fileID: 11400000, guid: e75bb407023fe1347800edc943c8af59, type: 2}
   inputSource: 1
   origin: {fileID: 0}
   onTransformUpdated:

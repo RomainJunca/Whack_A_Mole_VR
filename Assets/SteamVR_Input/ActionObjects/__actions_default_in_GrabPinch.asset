@@ -13,5 +13,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   changeTolerance: 0.000001
   fullPath: /actions/default/in/GrabPinch
-  actionSet: {fileID: 11400000, guid: 6cb2de64062f9344a97a99585f5bd98c, type: 2}
+  actionSet: {fileID: 11400000, guid: 4d86a579e5ca788459744e29d9b18d96, type: 2}
   direction: 0
