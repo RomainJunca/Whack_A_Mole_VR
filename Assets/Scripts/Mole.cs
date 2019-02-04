@@ -70,7 +70,7 @@ public class Mole : MonoBehaviour{
         wii.Play();
     }
 
-    private void makeItNormal() //Make the mole going back to normal
+    public void makeItNormal() //Make the mole going back to normal
     {
         moleMaterial[0] = (Material)Resources.Load("Materials/mole");
         moleMaterial[1] = null;

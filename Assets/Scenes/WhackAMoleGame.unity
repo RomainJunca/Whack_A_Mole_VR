@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028355, g: 0.22571374, b: 0.30692255, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -284,8 +284,6 @@ MonoBehaviour:
   spawnPoints: {fileID: 1293477935}
   molePrefab: {fileID: 1713667296023596, guid: c85c7c2e82a42ec44a98da1bc7888280, type: 2}
   molesList: []
-<<<<<<< HEAD
-=======
 --- !u!1 &314316522
 GameObject:
   m_ObjectHideFlags: 0
@@ -407,7 +405,6 @@ LineRenderer:
     generateLightingData: 0
   m_UseWorldSpace: 0
   m_Loop: 0
->>>>>>> 189760c196cf2e077c739e33f72a351e53866353
 --- !u!1 &355866282
 GameObject:
   m_ObjectHideFlags: 0
@@ -547,19 +544,11 @@ Prefab:
     - target: {fileID: 2348914, guid: 4d293c8e162f3874b982baadd71153d2, type: 2}
       propertyPath: m_Materials.Array.data[0]
       value: 
-<<<<<<< HEAD
-      objectReference: {fileID: 1071686824}
-    - target: {fileID: 3380982, guid: 4d293c8e162f3874b982baadd71153d2, type: 2}
-      propertyPath: m_Mesh
-      value: 
-      objectReference: {fileID: 642646060}
-=======
       objectReference: {fileID: 1792724452}
     - target: {fileID: 3380982, guid: 4d293c8e162f3874b982baadd71153d2, type: 2}
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 1056941074}
->>>>>>> 189760c196cf2e077c739e33f72a351e53866353
     - target: {fileID: 146900, guid: 4d293c8e162f3874b982baadd71153d2, type: 2}
       propertyPath: m_TagString
       value: Untagged
@@ -628,13 +617,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36997c11c3a130c469796d9f5c2fbdbf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-<<<<<<< HEAD
-=======
   color: {r: 1, g: 0, b: 0, a: 0}
   thickness: 0.002
   facingAxis: 1
   lineRender: {fileID: 314316524}
->>>>>>> 189760c196cf2e077c739e33f72a351e53866353
 --- !u!1 &586507452 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 124034, guid: 4d293c8e162f3874b982baadd71153d2,
@@ -651,16 +637,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e1bc8970c1468041a31e87f9e545fd6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-<<<<<<< HEAD
---- !u!43 &642646060
-=======
 --- !u!4 &586507455 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 402434, guid: 4d293c8e162f3874b982baadd71153d2,
     type: 2}
   m_PrefabInternal: {fileID: 586507447}
 --- !u!43 &1056941074
->>>>>>> 189760c196cf2e077c739e33f72a351e53866353
 Mesh:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -815,42 +797,6 @@ Mesh:
   m_MeshMetrics[0]: 1
   m_MeshMetrics[1]: 1
   m_MeshOptimized: 0
-<<<<<<< HEAD
---- !u!21 &1071686824
-Material:
-  serializedVersion: 6
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_Name: Sprites/Default
-  m_Shader: {fileID: 10753, guid: 0000000000000000f000000000000000, type: 0}
-  m_ShaderKeywords: 
-  m_LightmapFlags: 4
-  m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
-  disabledShaderPasses: []
-  m_SavedProperties:
-    serializedVersion: 3
-    m_TexEnvs:
-    - _AlphaTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _MainTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    m_Floats:
-    - PixelSnap: 0
-    - _EnableExternalAlpha: 0
-    m_Colors:
-    - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _Flip: {r: 1, g: 1, b: 1, a: 1}
-    - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
-=======
->>>>>>> 189760c196cf2e077c739e33f72a351e53866353
 --- !u!1 &1100117119
 GameObject:
   m_ObjectHideFlags: 0

@@ -21,16 +21,20 @@ public class GameController : MonoBehaviour
     // This function will be called when the user is pressing the trigger on a mole only
     void MoleWhackDetection(Collider mole)
     {
-        print(mole);
-        // Here you get the whacked mole collider you can access the gameobject with
-        //mole.gameObject
+        Mole moleCollided = mole.gameObject.GetComponent<Mole>();
+        if (moleCollided)
+        {
+            moleCollided.isActive = false;
+        }
     }
 
 	// This functiom is called when the user is pointing at a mole
     void IsPointingAtMole(Collider mole)
     {
-        // Here you get the whacked mole collider you can access the gameobject with
-        //mole.gameObject
-        print(mole);
+        Mole moleCollided = mole.gameObject.GetComponent<Mole>();
+        if (moleCollided)
+        {
+            moleCollided.glow();
+        }
     }
 }
