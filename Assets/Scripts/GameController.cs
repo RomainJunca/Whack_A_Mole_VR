@@ -11,6 +11,7 @@ public class GameController : MonoBehaviour
     {
         PointingSystem.onPressTrigger += MoleWhackDetection;
         PointingSystem.isPointingAtMole += IsPointingAtMole;
+        PointingSystem.isExitingMole += IsExitingMole;
     }
 
     void Update()
@@ -25,10 +26,11 @@ public class GameController : MonoBehaviour
         if (moleCollided)
         {
             moleCollided.isActive = false;
+            moleCollided.makeItNormal();
         }
     }
 
-	// This functiom is called when the user is pointing at a mole
+    // This functiom is called when the user is pointing at a mole
     void IsPointingAtMole(Collider mole)
     {
         Mole moleCollided = mole.gameObject.GetComponent<Mole>();
@@ -36,5 +38,11 @@ public class GameController : MonoBehaviour
         {
             moleCollided.glow();
         }
+    }
+
+    // This function is called when the user is  exiting the  mole with the controller pointer
+    void IsExitingMole(Collider mole)
+    {
+        print(mole);
     }
 }

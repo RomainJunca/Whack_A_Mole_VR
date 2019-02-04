@@ -79,14 +79,20 @@ public class Mole : MonoBehaviour{
 
     public void glow()
     {
-        if(moleMaterial[1].name == "green")
-        {
-            moleMaterial[1] = (Material)Resources.Load("Materials/green_Glow");
+        if(isActive){
+            if(moleMaterial[1].name == "green")
+            {
+                moleMaterial[0] = (Material)Resources.Load("Materials/mole");
+                moleMaterial[1] = (Material)Resources.Load("Materials/green_Glow");
+                moleMaterial[1].shader = (Shader)Resources.Load("Shaders/Glow");
+            }
+            else if(moleMaterial[1].name == "red")
+            {
+                moleMaterial[0] = (Material)Resources.Load("Materials/mole");
+                moleMaterial[1] = (Material)Resources.Load("Materials/red_Glow");
+                moleMaterial[1].shader = (Shader)Resources.Load("Shaders/Glow");
+            }
+            gameObject.GetComponent<MeshRenderer>().materials = moleMaterial;
         }
-        else if(moleMaterial[1].name == "red")
-        {
-            moleMaterial[1] = (Material)Resources.Load("Materials/green_Glow");
-        }
-        gameObject.GetComponent<MeshRenderer>().materials = moleMaterial;
     }
 }

@@ -26,8 +26,13 @@ public class PointingSystem : MonoBehaviour
 
     public delegate void OnPressTrigger(Collider collider);
     public delegate void PointingAtMoleDeleg(Collider collider);
+    public delegate void IsExitingMoleDeleg(Collider collider);
     public static event OnPressTrigger onPressTrigger;
     public static event PointingAtMoleDeleg isPointingAtMole;
+    public static event IsExitingMoleDeleg isExitingMole;
+
+    private bool isPointing = false;
+    private Collider savedCollider;
 
 
     void Start()
@@ -54,8 +59,15 @@ public class PointingSystem : MonoBehaviour
             PressTrigger();
 
         if (hitObject.collider != null)
+        {
             if (hitObject.collider.gameObject.tag == "mole")
                 IsPointingOnMole();
+            else if (isPointing)
+                IsExitingMole();
+        }
+        else if (isPointing)
+            IsExitingMole();
+
     }
 
 
@@ -74,5 +86,13 @@ public class PointingSystem : MonoBehaviour
     public void IsPointingOnMole()
     {
         isPointingAtMole(hitObject.collider);
+        savedCollider = hitObject.collider;
+        isPointing = true;
+    }
+
+    public void IsExitingMole()
+    {
+        isExitingMole(savedCollider);
+        isPointing = false;
     }
 }
