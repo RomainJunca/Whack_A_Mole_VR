@@ -49,7 +49,7 @@ public class Mole : MonoBehaviour{
         }
     }
 
-    private void makeItShine() //Make the mole shine in green or red
+    public void makeItShine() //Make the mole shine in green or red
     {
         Material currentMaterial;
         int odds = Random.Range(0, redOdds);

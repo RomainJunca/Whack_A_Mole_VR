@@ -43,6 +43,14 @@ public class GameController : MonoBehaviour
     // This function is called when the user is  exiting the  mole with the controller pointer
     void IsExitingMole(Collider mole)
     {
-        print(mole);
+        Mole moleCollided = mole.gameObject.GetComponent<Mole>();
+        if (moleCollided)
+        {
+            if(moleCollided.isActive){
+                moleCollided.makeItShine();
+            } else{
+                moleCollided.makeItNormal();
+            }
+        }    
     }
 }
