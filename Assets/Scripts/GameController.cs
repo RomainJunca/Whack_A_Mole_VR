@@ -8,6 +8,7 @@ public class GameController : MonoBehaviour {
 
 	void Start () {
 		PointingSystem.onPressTrigger += MoleWhackDetection;
+		PointingSystem.isPointingAtMole += IsPointingAtMole;
 	}
 	
 	void Update () {
@@ -22,6 +23,12 @@ public class GameController : MonoBehaviour {
 		}
 		else {
 			//
+		}
+	}
+
+	void IsPointingAtMole(bool isPointingAtMole) {
+		if(isPointingAtMole) {
+			// User is pointing at thte  mole with the controller
 		}
 	}
 }

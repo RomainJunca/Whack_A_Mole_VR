@@ -29,8 +29,14 @@ public class PointingSystem : MonoBehaviour
 
 
     public delegate void OnPressTrigger(bool isAMole);
+    public delegate void PointingAtMoleDeleg(bool isPointingAtMole);
     public static event OnPressTrigger onPressTrigger;
+    public static event PointingAtMoleDeleg isPointingAtMole;
 
+
+    void Start() {
+        SetupPointingSystem();
+    }
     void Update()
     {
         Ray raycast = new Ray(transform.position, transform.forward);
@@ -140,5 +146,10 @@ public class PointingSystem : MonoBehaviour
                     onPressTrigger(false);
             }
         }
+    }
+
+    public void IsPointingOnMole()
+    {
+         isPointingAtMole(hitObject.collider.gameObject.tag == "spawn");
     }
 }
