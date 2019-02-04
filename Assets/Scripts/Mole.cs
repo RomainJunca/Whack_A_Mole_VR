@@ -8,6 +8,7 @@ public class Mole : MonoBehaviour{
     public int redOdds = 8;
     public AudioSource wii;
 
+    private GameController gmCtrl;
     private float lifeTime = 5f;
     private float timer = 0f;
     private bool startShining = true;
@@ -17,6 +18,7 @@ public class Mole : MonoBehaviour{
     void Start()
     {
         wii = gameObject.GetComponent<AudioSource>();
+        gmCtrl = GameObject.Find("GameController").GetComponent<GameController>();
     }
 
     void Update()
@@ -72,6 +74,19 @@ public class Mole : MonoBehaviour{
     {
         moleMaterial[0] = (Material)Resources.Load("Materials/mole");
         moleMaterial[1] = null;
+        gameObject.GetComponent<MeshRenderer>().materials = moleMaterial;
+    }
+
+    public void glow()
+    {
+        if(moleMaterial[1].name == "green")
+        {
+            moleMaterial[1] = (Material)Resources.Load("Materials/green_Glow");
+        }
+        else if(moleMaterial[1].name == "red")
+        {
+            moleMaterial[1] = (Material)Resources.Load("Materials/green_Glow");
+        }
         gameObject.GetComponent<MeshRenderer>().materials = moleMaterial;
     }
 }
