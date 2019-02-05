@@ -25,7 +25,7 @@ public class WallController : MonoBehaviour {
 
 	void Update () {
 
-        gameObject.transform.position = new Vector3(cam.transform.position.x, cam.transform.position.y-1.2f, cam.transform.position.z + 1); //The wall follows the camera
+        gameObject.transform.position = new Vector3(cam.transform.position.x, cam.transform.position.y-0.8f, cam.transform.position.z + 1); //The wall follows the camera
 
         if (start && mode != 0)
         {
@@ -68,15 +68,15 @@ public class WallController : MonoBehaviour {
     {
         if(lvl == 1)
         {
-            return Random.Range(1f, 3f);
+            return Random.Range(3f, 4f);
         }
         else if(lvl == 2)
         {
-            return Random.Range(0.5f, 2f);
+            return Random.Range(1.5f, 3f);
         }
         else if(lvl == 3)
         {
-            return Random.Range(0.1f, 1f);
+            return Random.Range(0.5f, 1.5f);
         }
         else
         {
