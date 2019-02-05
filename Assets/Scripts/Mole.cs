@@ -72,6 +72,7 @@ public class Mole : MonoBehaviour{
         gameObject.GetComponent<MeshRenderer>().materials = moleMaterial;*/
         
         wii.time = 0.52f; //Play directly at the beginning of the sound
+        wii.spatialBlend =  1;
         wii.Play();
     }
 

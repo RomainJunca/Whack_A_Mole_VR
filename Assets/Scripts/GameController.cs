@@ -33,7 +33,8 @@ public class GameController : MonoBehaviour
         Mole moleCollided = mole.gameObject.GetComponent<Mole>();
         if (moleCollided)
         {
-            moleCollided.glow();
+            if (moleCollided.isActive)
+                moleCollided.glow();
         }
     }
 
@@ -43,13 +44,14 @@ public class GameController : MonoBehaviour
         Mole moleCollided = mole.gameObject.GetComponent<Mole>();
         if (moleCollided)
         {
-            if(moleCollided.isActive){
+            if (moleCollided.isActive)
+            {
                 moleCollided.addMaterials(moleCollided.currentColor);
             }
             else
             {
                 moleCollided.addMaterials(null);
             }
-        }    
+        }
     }
 }
