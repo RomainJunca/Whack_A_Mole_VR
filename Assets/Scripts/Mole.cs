@@ -7,6 +7,7 @@ public class Mole : MonoBehaviour{
     public bool isActive = false;
     public int redOdds = 8;
     public AudioSource wii;
+    public string currentColor;
 
     private GameController gmCtrl;
     private float lifeTime = 5f;
@@ -30,7 +31,7 @@ public class Mole : MonoBehaviour{
             {
                 if (startNormal)
                 {
-                    makeItNormal();
+                    addMaterials(null); //Make the mole going back to normal
                     startNormal = false;
                 }
                 timer = 0;
@@ -51,48 +52,72 @@ public class Mole : MonoBehaviour{
 
     public void makeItShine() //Make the mole shine in green or red
     {
-        Material currentMaterial;
+        //Material currentMaterial;
         int odds = Random.Range(0, redOdds);
         if (odds != redOdds / 2)
         {
-            currentMaterial = (Material)Resources.Load("Materials/green");
+            //currentMaterial = (Material)Resources.Load("Materials/green");
+            addMaterials("green");
+            currentColor = "green";
         }
         else
         {
-            currentMaterial = (Material)Resources.Load("Materials/red");
+            //currentMaterial = (Material)Resources.Load("Materials/red");
+            addMaterials("red");
+            currentColor = "red";
         }
 
-        moleMaterial[0] = (Material)Resources.Load("Materials/mole");
+        /*moleMaterial[0] = (Material)Resources.Load("Materials/mole");
         moleMaterial[1] = currentMaterial;
-        gameObject.GetComponent<MeshRenderer>().materials = moleMaterial;
+        gameObject.GetComponent<MeshRenderer>().materials = moleMaterial;*/
         
         wii.time = 0.52f; //Play directly at the beginning of the sound
         wii.Play();
     }
 
-    public void makeItNormal() //Make the mole going back to normal
+   /* public void makeItNormal() 
     {
-        moleMaterial[0] = (Material)Resources.Load("Materials/mole");
-        moleMaterial[1] = null;
-        gameObject.GetComponent<MeshRenderer>().materials = moleMaterial;
-    }
+        addMaterials(null);
+    }*/
 
     public void glow()
     {
         if(isActive){
             if(moleMaterial[1].name == "green")
             {
-                moleMaterial[0] = (Material)Resources.Load("Materials/mole");
-                moleMaterial[1] = (Material)Resources.Load("Materials/green_Glow");
-                moleMaterial[1].shader = (Shader)Resources.Load("Shaders/Glow");
+                addMaterials("green_Glow");
+
             }
             else if(moleMaterial[1].name == "red")
             {
-                moleMaterial[0] = (Material)Resources.Load("Materials/mole");
+                addMaterials("red_Glow");
+            }
+        }
+    }
+
+    public void addMaterials(string secondMaterial)
+    {
+        moleMaterial[0] = (Material)Resources.Load("Materials/mole");
+        switch (secondMaterial)
+        {
+            case "green":
+                moleMaterial[1] = (Material)Resources.Load("Materials/green");
+                break;
+            case "red":
+                moleMaterial[1] = (Material)Resources.Load("Materials/red");
+                break;
+            case "green_Glow":
+                moleMaterial[1] = (Material)Resources.Load("Materials/green_Glow");
+                moleMaterial[1].shader = (Shader)Resources.Load("Shaders/Glow");
+                break;
+            case "red_Glow":
                 moleMaterial[1] = (Material)Resources.Load("Materials/red_Glow");
                 moleMaterial[1].shader = (Shader)Resources.Load("Shaders/Glow");
-            }
-            gameObject.GetComponent<MeshRenderer>().materials = moleMaterial;
+                break;
+            default:
+                moleMaterial[1] = null;
+                break;
         }
+        gameObject.GetComponent<MeshRenderer>().materials = moleMaterial;
     }
 }

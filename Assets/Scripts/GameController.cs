@@ -6,17 +6,14 @@ public class GameController : MonoBehaviour
 {
 
     public List<Mole> listMolesObjects;
+    private Material[] moleMaterial = new Material[2];
+
 
     void Start()
     {
         PointingSystem.onPressTrigger += MoleWhackDetection;
         PointingSystem.isPointingAtMole += IsPointingAtMole;
         PointingSystem.isExitingMole += IsExitingMole;
-    }
-
-    void Update()
-    {
-
     }
 
     // This function will be called when the user is pressing the trigger on a mole only
@@ -26,7 +23,7 @@ public class GameController : MonoBehaviour
         if (moleCollided)
         {
             moleCollided.isActive = false;
-            moleCollided.makeItNormal();
+            moleCollided.addMaterials(null);
         }
     }
 
@@ -40,16 +37,18 @@ public class GameController : MonoBehaviour
         }
     }
 
-    // This function is called when the user is  exiting the  mole with the controller pointer
+    // This function is called when the user is exiting the  mole with the controller pointer
     void IsExitingMole(Collider mole)
     {
         Mole moleCollided = mole.gameObject.GetComponent<Mole>();
         if (moleCollided)
         {
             if(moleCollided.isActive){
-                moleCollided.makeItShine();
-            } else{
-                moleCollided.makeItNormal();
+                moleCollided.addMaterials(moleCollided.currentColor);
+            }
+            else
+            {
+                moleCollided.addMaterials(null);
             }
         }    
     }
