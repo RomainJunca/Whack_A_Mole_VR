@@ -8,11 +8,11 @@ public class Mole : MonoBehaviour{
     public int redOdds = 8;
     public AudioSource wii;
     public string currentColor;
+    public bool startShining = true;
+    public float timer = 0f;
 
     private GameController gmCtrl;
     private float lifeTime = 5f;
-    private float timer = 0f;
-    private bool startShining = true;
     private bool startNormal = true;
     private Material[] moleMaterial = new Material[2];
 
@@ -72,7 +72,7 @@ public class Mole : MonoBehaviour{
         gameObject.GetComponent<MeshRenderer>().materials = moleMaterial;*/
         
         wii.time = 0.52f; //Play directly at the beginning of the sound
-        wii.spatialBlend =  1;
+        wii.spatialBlend =  1; //Add stereo audio
         wii.Play();
     }
 

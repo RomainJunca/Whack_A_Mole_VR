@@ -24,6 +24,8 @@ public class GameController : MonoBehaviour
         {
             moleCollided.isActive = false;
             moleCollided.addMaterials(null);
+            moleCollided.timer = 0;
+            moleCollided.startShining = true;
         }
     }
 
