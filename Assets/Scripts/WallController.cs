@@ -9,13 +9,14 @@ public class WallController : MonoBehaviour {
     public GameObject spawnPoints;
     public GameObject molePrefab;
     public List<GameObject> molesList;
+    public int mode;
+    public bool start = false;
 
     private float timer;
     private float rndTime = 1f;
     private GameObject currentMole;
     private int indexCurrentMole;
     private float moleLifeTime = 1f;
-    private bool start = true;
 
 	void Start () {
         molesList = new List<GameObject>();
@@ -26,16 +27,16 @@ public class WallController : MonoBehaviour {
 
         gameObject.transform.position = new Vector3(cam.transform.position.x, cam.transform.position.y-1.2f, cam.transform.position.z + 1); //The wall follows the camera
 
-
+        if (start && mode != 0)
+        {
             timer += Time.deltaTime;
             if (timer >= rndTime) //We select a new mole every random timer
             {
                 currentMole = selectMole(molesList);
                 timer = 0.0f;
-                rndTime = generateTimer(3);
+                rndTime = generateTimer(mode);
             }
-
-
+        }
 	}
 
     private void generateMoles(GameObject spawnpoints, GameObject prefab, GameObject wall) //We generate the moles on the spawnpoints
@@ -67,15 +68,15 @@ public class WallController : MonoBehaviour {
     {
         if(lvl == 1)
         {
-            return Random.Range(1f, 5f);
+            return Random.Range(1f, 3f);
         }
         else if(lvl == 2)
         {
-            return Random.Range(0.5f, 4f);
+            return Random.Range(0.5f, 2f);
         }
         else if(lvl == 3)
         {
-            return Random.Range(0.2f, 3f);
+            return Random.Range(0.1f, 1f);
         }
         else
         {

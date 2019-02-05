@@ -56,30 +56,19 @@ public class Mole : MonoBehaviour{
         int odds = Random.Range(0, redOdds);
         if (odds != redOdds / 2)
         {
-            //currentMaterial = (Material)Resources.Load("Materials/green");
             addMaterials("green");
             currentColor = "green";
         }
         else
         {
-            //currentMaterial = (Material)Resources.Load("Materials/red");
             addMaterials("red");
             currentColor = "red";
         }
-
-        /*moleMaterial[0] = (Material)Resources.Load("Materials/mole");
-        moleMaterial[1] = currentMaterial;
-        gameObject.GetComponent<MeshRenderer>().materials = moleMaterial;*/
         
         wii.time = 0.52f; //Play directly at the beginning of the sound
         wii.spatialBlend =  1; //Add stereo audio
         wii.Play();
     }
-
-   /* public void makeItNormal() 
-    {
-        addMaterials(null);
-    }*/
 
     public void glow()
     {
