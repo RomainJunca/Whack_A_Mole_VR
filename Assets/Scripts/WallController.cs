@@ -24,7 +24,7 @@ public class WallController : MonoBehaviour {
 
 	void Update () {
 
-        gameObject.transform.position = new Vector3(cam.transform.position.x, cam.transform.position.y-1.5f, cam.transform.position.z + 1); //The wall follows the camera
+        gameObject.transform.position = new Vector3(cam.transform.position.x, cam.transform.position.y-1.2f, cam.transform.position.z + 1); //The wall follows the camera
 
 
             timer += Time.deltaTime;
