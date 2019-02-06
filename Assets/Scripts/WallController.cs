@@ -32,13 +32,13 @@ public class WallController : MonoBehaviour {
 
 	void Update () {
 
-        gameObject.transform.position = new Vector3(cam.transform.position.x, cam.transform.position.y-0.8f, cam.transform.position.z + 1); //The wall follows the camera
+        gameObject.transform.position = new Vector3(cam.transform.position.x, cam.transform.position.y-1.85f, cam.transform.position.z + 1); //The wall follows the camera
 
-        if(totalMolesMissed > maxMissed) //If too much missed -> Game over menu -> we display the results
+        if(((totalMolesMissed - redMissed)-totalMolesWhacked) > maxMissed) //If too much missed -> Game over menu -> we display the results
         {
             molesBackToNormal(molesList); //We reset the moles materials to normal
             start = false;
-            gameOver.transform.Find("Results").GetComponent<TextMesh>().text = " \nMoles missed :\n"+ (totalMolesMissed - redMissed) + "\n Green moles whacked:\n"+totalMolesWhacked+"\n Red moles whacked:\n"+redMissed+"\n ";
+            gameOver.transform.Find("Results").GetComponent<TextMesh>().text = " \nMoles missed :\n"+ ((totalMolesMissed - redMissed)-totalMolesWhacked) + "\n Green moles whacked:\n"+totalMolesWhacked+"\n Red moles whacked:\n"+redMissed+"\n ";
             gameOver.SetActive(true);
         }
 
@@ -47,6 +47,7 @@ public class WallController : MonoBehaviour {
             timer += Time.deltaTime;
             if (timer >= rndTime) //We select a new mole every random timer
             {
+                //totalMolesMissed = totalMolesMissed - totalMolesWhacked;
                 if (currentMole && currentMole.GetComponent<Mole>().currentColor == "green")
                 {
                     totalMolesMissed++;
@@ -123,17 +124,23 @@ public class WallController : MonoBehaviour {
 
     private float gradual() //The timer changes gradually depending on the number of the whacked moles
     {
-        if(totalMolesWhacked > 5)
+        if(totalMolesWhacked > 4 && totalMolesWhacked <= 8)
         {
             maxMoles = 4;
-            maxMissed = 3;
+            maxMissed = 4;
             return Random.Range(1.5f, 3f);
         }
-        else if(totalMolesWhacked > 10)
+        else if(totalMolesWhacked > 9 && totalMolesWhacked <= 16)
         {
             maxMoles = 6;
+            maxMissed = 3;
+            return Random.Range(0.9f, 1.5f);
+        }
+        else if(totalMolesWhacked > 17)
+        {
+            maxMoles = 8;
             maxMissed = 2;
-            return Random.Range(0.5f, 1.5f);
+            return Random.Range(0.2f, 0.8f);
         }
         else
         {
