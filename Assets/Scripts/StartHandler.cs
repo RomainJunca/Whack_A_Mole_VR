@@ -113,7 +113,7 @@ public class StartHandler : MonoBehaviour {
             case "hard":
                 buttonHighlight(hard);
                 break;
-            case "regular":
+            case "gradual":
                 buttonHighlight(gradual);
                 break;
             default:
