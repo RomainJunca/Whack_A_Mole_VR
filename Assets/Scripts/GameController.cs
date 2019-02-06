@@ -6,8 +6,9 @@ public class GameController : MonoBehaviour
 {
 
     public List<Mole> listMolesObjects;
-    private Material[] moleMaterial = new Material[2];
+    public WallController wallCtrl;
 
+    private Material[] moleMaterial = new Material[2];
 
     void Start()
     {
@@ -23,6 +24,12 @@ public class GameController : MonoBehaviour
         if (moleCollided)
         {
             moleCollided.isActive = false;
+
+            if(moleCollided.currentColor == "green")
+            {
+                wallCtrl.totalMolesWhacked++;
+            }
+
             moleCollided.addMaterials(null);
             moleCollided.timer = 0;
             moleCollided.startShining = true;
@@ -40,7 +47,7 @@ public class GameController : MonoBehaviour
         }
     }
 
-    // This function is called when the user is exiting the  mole with the controller pointer
+    // This function is called when the user is exiting the mole with the controller pointer
     void IsExitingMole(Collider mole)
     {
         Mole moleCollided = mole.gameObject.GetComponent<Mole>();

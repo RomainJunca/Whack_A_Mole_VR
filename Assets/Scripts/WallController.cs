@@ -11,6 +11,8 @@ public class WallController : MonoBehaviour {
     public List<GameObject> molesList;
     public int mode;
     public bool start = false;
+    public int totalMolesWhacked = 0;
+    public int maxMoles = 2;
 
     private float timer;
     private float rndTime = 1f;
@@ -53,34 +55,68 @@ public class WallController : MonoBehaviour {
     private GameObject selectMole(List<GameObject> listMoles) //Select a random mole
     {
         int index;
+        //We look for a new mole, different from the previous, who isn't active and while the number of activated moles is less than the max number
         do
         {
             index = Random.Range(0, listMoles.Count);
             
-        }while(index == indexCurrentMole && listMoles[index].GetComponent<Mole>().isActive);
+        }while(index == indexCurrentMole && listMoles[index].GetComponent<Mole>().isActive && molesActiveCount(listMoles) > maxMoles); 
         indexCurrentMole = index;
         listMoles[index].GetComponent<Mole>().isActive = true;
 
         return listMoles[indexCurrentMole];
     }
 
+    private int molesActiveCount(List<GameObject> listMoles) //return the number of active mole
+    {
+        int count = 0;
+        foreach(GameObject mole in listMoles)
+        {
+            if (mole.GetComponent<Mole>().isActive)
+            {
+                count++;
+            }
+        }
+
+        return count;
+    }
+
     private float generateTimer(int lvl) //The timer before mole's appearance depending on the level
     {
-        if(lvl == 1)
+        switch (lvl)
         {
-            return Random.Range(3f, 4f);
+            case 1:
+                maxMoles = 2;
+                return Random.Range(3f, 4f);
+            case 2:
+                maxMoles = 4;
+                return Random.Range(1.5f, 3f);
+            case 3:
+                maxMoles = 6;
+                return Random.Range(0.5f, 1.5f);
+            case 4:
+                return gradual();
+            default:
+                return 1f;
         }
-        else if(lvl == 2)
+    }
+
+    private float gradual() //The timer changes gradually depending on the number of the whacked moles
+    {
+        if(totalMolesWhacked > 5)
         {
+            maxMoles = 4;
             return Random.Range(1.5f, 3f);
         }
-        else if(lvl == 3)
+        else if(totalMolesWhacked > 10)
         {
+            maxMoles = 6;
             return Random.Range(0.5f, 1.5f);
         }
         else
         {
-            return 1f;
+            maxMoles = 2;
+            return Random.Range(3f, 4f);
         }
     }
 

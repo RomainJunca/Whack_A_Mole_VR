@@ -5,15 +5,16 @@ using UnityEngine;
 public class StartHandler : MonoBehaviour {
 
     public GameObject menu;
-    public GameObject easy, medium, hard;
+    public GameObject easy, medium, hard, gradual;
 
     private WallController wallCtrl;
     private GameObject currentMode;
     private string currentModeString;
     private Material[] original_Textures = new Material[2];
+    private string nameGO;
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
         original_Textures = easy.GetComponent<MeshRenderer>().materials;
         wallCtrl = gameObject.GetComponent<WallController>();
 	}
@@ -21,26 +22,52 @@ public class StartHandler : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
-        //We watch for the key pressed for the selected mode
-        if (Input.GetKeyDown("1") || Input.GetKeyDown("[1]"))
+
+        //We watch for the position of the mouse on the game scene
+
+        if (Input.GetMouseButtonDown(0))
+        {
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hit;
+            if (Physics.Raycast(ray, out hit))
+            {
+                nameGO = hit.transform.name;
+                print(nameGO);
+            }
+            else { nameGO = ""; }
+        }
+        else
+        {
+            nameGO = "";
+        }
+
+        //We watch for the key pressed for the selected mode or the mouse button pressed on the gameobject
+        if (Input.GetKeyDown("1") || Input.GetKeyDown("[1]") || nameGO == "Easy")
         {
             changeCurrentButton();
             currentMode = easy;
             currentModeString = "easy";
             buttonSelected(currentModeString);
         }
-        else if (Input.GetKeyDown("2") || Input.GetKeyDown("[2]"))
+        else if (Input.GetKeyDown("2") || Input.GetKeyDown("[2]") || nameGO == "Medium")
         {
             changeCurrentButton();
             currentMode = medium;
             currentModeString = "medium";
             buttonSelected(currentModeString);
         }
-        else if (Input.GetKeyDown("3") || Input.GetKeyDown("[3]"))
+        else if (Input.GetKeyDown("3") || Input.GetKeyDown("[3]") || nameGO == "Hard")
         {
             changeCurrentButton();
             currentMode = hard;
             currentModeString = "hard";
+            buttonSelected(currentModeString);
+        }
+        else if(Input.GetKeyDown("4") || Input.GetKeyDown("[4]") || nameGO == "Gradual")
+        {
+            changeCurrentButton();
+            currentMode = gradual;
+            currentModeString = "gradual";
             buttonSelected(currentModeString);
         }
 
@@ -60,6 +87,9 @@ public class StartHandler : MonoBehaviour {
                     break;
                 case "hard":
                     wallCtrl.mode = 3;
+                    break;
+                case "gradual":
+                    wallCtrl.mode = 4;
                     break;
                 default:
                     break;
@@ -82,6 +112,9 @@ public class StartHandler : MonoBehaviour {
                 break;
             case "hard":
                 buttonHighlight(hard);
+                break;
+            case "regular":
+                buttonHighlight(gradual);
                 break;
             default:
                 break;
