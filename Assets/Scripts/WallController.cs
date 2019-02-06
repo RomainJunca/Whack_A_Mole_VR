@@ -8,11 +8,15 @@ public class WallController : MonoBehaviour {
     public GameObject wall_with_moles;
     public GameObject spawnPoints;
     public GameObject molePrefab;
+    public GameObject gameOver;
     public List<GameObject> molesList;
     public int mode;
     public bool start = false;
     public int totalMolesWhacked = 0;
-    public int maxMoles = 2;
+    public int totalMolesMissed = 0;
+    public int maxMoles = 2;    //Max of moles which can appear at the same time (depending of the level)
+    public int maxMissed = 5;   //Max of moles which can be missed before game over (depending of the level)
+    public int redMissed = 0;
 
     private float timer;
     private float rndTime = 1f;
@@ -22,6 +26,7 @@ public class WallController : MonoBehaviour {
 
 	void Start () {
         molesList = new List<GameObject>();
+        gameOver.SetActive(false);
         generateMoles(spawnPoints, molePrefab, wall_with_moles);
 	}
 
@@ -29,11 +34,23 @@ public class WallController : MonoBehaviour {
 
         gameObject.transform.position = new Vector3(cam.transform.position.x, cam.transform.position.y-0.8f, cam.transform.position.z + 1); //The wall follows the camera
 
+        if(totalMolesMissed > maxMissed) //If too much missed -> Game over menu -> we display the results
+        {
+            molesBackToNormal(molesList); //We reset the moles materials to normal
+            start = false;
+            gameOver.transform.Find("Results").GetComponent<TextMesh>().text = " \nMoles missed :\n"+ (totalMolesMissed - redMissed) + "\n Green moles whacked:\n"+totalMolesWhacked+"\n Red moles whacked:\n"+redMissed+"\n ";
+            gameOver.SetActive(true);
+        }
+
         if (start && mode != 0)
         {
             timer += Time.deltaTime;
             if (timer >= rndTime) //We select a new mole every random timer
             {
+                if (currentMole && currentMole.GetComponent<Mole>().currentColor == "green")
+                {
+                    totalMolesMissed++;
+                }
                 currentMole = selectMole(molesList);
                 timer = 0.0f;
                 rndTime = generateTimer(mode);
@@ -87,12 +104,15 @@ public class WallController : MonoBehaviour {
         {
             case 1:
                 maxMoles = 2;
+                maxMissed = 5;
                 return Random.Range(3f, 4f);
             case 2:
                 maxMoles = 4;
+                maxMissed = 3;
                 return Random.Range(1.5f, 3f);
             case 3:
                 maxMoles = 6;
+                maxMissed = 2;
                 return Random.Range(0.5f, 1.5f);
             case 4:
                 return gradual();
@@ -106,17 +126,31 @@ public class WallController : MonoBehaviour {
         if(totalMolesWhacked > 5)
         {
             maxMoles = 4;
+            maxMissed = 3;
             return Random.Range(1.5f, 3f);
         }
         else if(totalMolesWhacked > 10)
         {
             maxMoles = 6;
+            maxMissed = 2;
             return Random.Range(0.5f, 1.5f);
         }
         else
         {
             maxMoles = 2;
+            maxMissed = 5;
             return Random.Range(3f, 4f);
+        }
+    }
+
+    private void molesBackToNormal(List<GameObject> molesList)
+    {
+        foreach(GameObject mole in molesList)
+        {
+            if (mole.GetComponent<MeshRenderer>().materials.Length != 1)
+            {
+                mole.GetComponent<Mole>().addMaterials(null);
+            }
         }
     }
 

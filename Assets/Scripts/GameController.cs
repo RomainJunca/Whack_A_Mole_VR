@@ -25,9 +25,14 @@ public class GameController : MonoBehaviour
         {
             moleCollided.isActive = false;
 
-            if(moleCollided.currentColor == "green")
+            if(moleCollided.currentColor == "green")    //We add a point if the whacked mole is green
             {
                 wallCtrl.totalMolesWhacked++;
+            } 
+            else if(moleCollided.currentColor == "red") //We add a missed point if the whacked mole is red
+            {
+                wallCtrl.totalMolesMissed++;
+                wallCtrl.redMissed++;
             }
 
             moleCollided.addMaterials(null);

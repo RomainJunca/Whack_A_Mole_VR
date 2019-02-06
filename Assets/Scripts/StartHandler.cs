@@ -12,6 +12,11 @@ public class StartHandler : MonoBehaviour {
     private string currentModeString;
     private Material[] original_Textures = new Material[2];
     private string nameGO;
+    private float clicked = 0;
+    private float clicktime = 0;
+    private float clickdelay = 0.2f;
+    private bool hasDoubleClicked = false;
+    private string currentModeStringClicked = "";
 
     // Use this for initialization
     void Start () {
@@ -24,7 +29,7 @@ public class StartHandler : MonoBehaviour {
     {
 
         //We watch for the position of the mouse on the game scene
-
+        //We also watch for double click
         if (Input.GetMouseButtonDown(0))
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -32,6 +37,23 @@ public class StartHandler : MonoBehaviour {
             if (Physics.Raycast(ray, out hit))
             {
                 nameGO = hit.transform.name;
+                clicked++;
+                if (clicked == 1) clicktime = Time.deltaTime;
+                if (clicked > 1 && Time.deltaTime - clicktime < clickdelay)
+                {
+                    print("DOUBLE CLICK");
+                    if(currentModeString != "")
+                    {
+                        if(currentModeString == currentModeStringClicked)
+                        {
+                            hasDoubleClicked = true;
+                        }
+                        currentModeStringClicked = currentModeString;
+                    }
+
+                    clicked = 0;
+                    clicktime = 0;
+                }
                 print(nameGO);
             }
             else { nameGO = ""; }
@@ -71,9 +93,10 @@ public class StartHandler : MonoBehaviour {
             buttonSelected(currentModeString);
         }
 
-        //Launching a mode
-        if (Input.GetKeyDown("return") && currentMode != null)
+        //Launching a mode (either by pressing return or double clicking on the button)
+        if ((Input.GetKeyDown("return") && currentMode != null) || (hasDoubleClicked && (currentModeString == "easy" || currentModeString == "medium" || currentModeString == "hard" || currentModeString == "gradual")))
         {
+            hasDoubleClicked = false;
             menu.transform.position = new Vector3(menu.transform.position.x, menu.transform.position.y, menu.transform.position.z + 1);
             menu.SetActive(false);
 
