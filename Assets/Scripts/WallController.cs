@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WallController : MonoBehaviour {
+public class WallController : MonoBehaviour
+{
 
     public GameObject cam;
     public GameObject wall_with_moles;
@@ -16,29 +17,40 @@ public class WallController : MonoBehaviour {
     public int totalMissedMoles = 0;
     public int maxMoles = 2;    //Max of moles which can appear at the same time (depending of the level)
     public int maxMissed = 5;   //Max of moles which can be missed before game over (depending of the level)
-    public int redMissed = 0;
+    public int redWhacked = 0;
 
     private float timer;
     private float rndTime = 1f;
     private GameObject currentMole;
     private int indexCurrentMole;
     private float moleLifeTime = 1f;
+    private int doOnce = 0;
 
-	void Start () {
+    private int totalMissedMolesSave = 0, redWhackedSave = 0;
+
+    void Start()
+    {
         molesList = new List<GameObject>();
         gameOver.SetActive(false);
         generateMoles(spawnPoints, molePrefab, wall_with_moles);
-	}
+    }
 
-	void Update () {
+    void Update()
+    {
 
-        gameObject.transform.position = new Vector3(cam.transform.position.x, cam.transform.position.y-1.85f, cam.transform.position.z + 1); //The wall follows the camera
-        //   10        -    2       -    12
-        if(totalMissedMoles + redMissed > maxMissed) //If too much missed -> Game over menu -> we display the results
+        gameObject.transform.position = new Vector3(cam.transform.position.x, cam.transform.position.y - 1.85f, cam.transform.position.z + 1); //The wall follows the camera
+
+        if (totalMissedMoles + redWhacked > maxMissed) //If too much missed -> Game over menu -> we display the results
         {
             molesBackToNormal(molesList); //We reset the moles materials to normal
             start = false;
-            gameOver.transform.Find("Results").GetComponent<TextMesh>().text = " \nMoles missed :\n"+ totalMissedMoles + "\n Green moles whacked:\n"+totalMolesWhacked+"\n Red moles whacked:\n"+redMissed+"\n ";
+
+            if (mode == 4)
+            {
+                totalMissedMoles += totalMissedMolesSave;
+                redWhacked += redWhackedSave;
+            }
+            gameOver.transform.Find("Results").GetComponent<TextMesh>().text = " \nMoles missed :\n" + totalMissedMoles + "\n Green moles whacked:\n" + totalMolesWhacked + "\n Red moles whacked:\n" + redWhacked + "\n ";
             gameOver.SetActive(true);
         }
 
@@ -52,7 +64,7 @@ public class WallController : MonoBehaviour {
                 rndTime = generateTimer(mode);
             }
         }
-	}
+    }
 
     private void generateMoles(GameObject spawnpoints, GameObject prefab, GameObject wall) //We generate the moles on the spawnpoints
     {
@@ -72,18 +84,18 @@ public class WallController : MonoBehaviour {
         do
         {
             index = Random.Range(0, listMoles.Count);
-            
-        }while(index == indexCurrentMole && listMoles[index].GetComponent<Mole>().isActive && molesActiveCount(listMoles) > maxMoles); 
+
+        } while (index == indexCurrentMole && listMoles[index].GetComponent<Mole>().isActive && molesActiveCount(listMoles) > maxMoles);
         indexCurrentMole = index;
         listMoles[index].GetComponent<Mole>().isActive = true;
-
+        listMoles[index].GetComponent<Mole>().timer = 0;
         return listMoles[indexCurrentMole];
     }
 
     private int molesActiveCount(List<GameObject> listMoles) //return the number of active mole
     {
         int count = 0;
-        foreach(GameObject mole in listMoles)
+        foreach (GameObject mole in listMoles)
         {
             if (mole.GetComponent<Mole>().isActive)
             {
@@ -119,35 +131,28 @@ public class WallController : MonoBehaviour {
 
     private float gradual() //The timer changes gradually depending on the number of the whacked moles
     {
-        if(totalMolesWhacked > 4 && totalMolesWhacked <= 8)
+        //For each step in this mode, we change/reste values such as : max moles that can be missed, nbr of moles (green or red) whacked, and new range of appearances.
+        if (totalMolesWhacked > 4 && totalMolesWhacked <= 8)
         {
-            maxMoles = 4;
-            maxMissed = 4;
-            return Random.Range(1.5f, 3f);
+            return changeModeValues(4, 4, 1.5f, 3f, 1);
         }
-        else if(totalMolesWhacked > 9 && totalMolesWhacked <= 16)
+        else if (totalMolesWhacked > 9 && totalMolesWhacked <= 16)
         {
-            maxMoles = 6;
-            maxMissed = 3;
-            return Random.Range(0.9f, 1.5f);
+            return changeModeValues(6, 3, 0.9f, 1.5f, 2);
         }
-        else if(totalMolesWhacked > 17)
+        else if (totalMolesWhacked > 17)
         {
-            maxMoles = 8;
-            maxMissed = 2;
-            return Random.Range(0.2f, 0.9f);
+            return changeModeValues(8, 2, 0.2f, 0.9f, 3);
         }
         else
         {
-            maxMoles = 2;
-            maxMissed = 5;
-            return Random.Range(3f, 4f);
+            return changeModeValues(2, 5, 3f, 4f, 0);
         }
     }
 
     private void molesBackToNormal(List<GameObject> molesList)
     {
-        foreach(GameObject mole in molesList)
+        foreach (GameObject mole in molesList)
         {
             if (mole.GetComponent<MeshRenderer>().materials.Length != 1)
             {
@@ -156,4 +161,21 @@ public class WallController : MonoBehaviour {
         }
     }
 
+    private float changeModeValues(int molesMax, int missedMax, float minRange, float maxRange, int step)
+    {
+        maxMoles = molesMax;
+        maxMissed = missedMax;
+
+        if (doOnce == step) //We have to do it only once per step/mode
+        {
+            doOnce++;
+            totalMissedMolesSave += totalMissedMoles;
+            redWhackedSave += redWhacked;
+            totalMissedMoles = 0;
+            redWhacked = 0;
+        }
+
+
+        return Random.Range(minRange, maxRange);
+    }
 }

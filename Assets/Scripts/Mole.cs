@@ -56,10 +56,6 @@ public class Mole : MonoBehaviour
                 startNormal = true;
             }
         }
-        else
-        {
-
-        }
     }
 
     public void makeItShine() //Make the mole shine in green or red
@@ -118,7 +114,7 @@ public class Mole : MonoBehaviour
                 moleMaterial[1].shader = (Shader)Resources.Load("Shaders/Glow");
                 break;
             default:
-                moleMaterial[1] = null;
+                moleMaterial[1] = moleMaterial[0];
                 break;
         }
         gameObject.GetComponent<MeshRenderer>().materials = moleMaterial;
