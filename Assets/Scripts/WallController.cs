@@ -27,6 +27,8 @@ public class WallController : MonoBehaviour
 
     private int totalMissedMolesSave = 0, redWhackedSave = 0;
 
+    private bool stop = false;
+
     void Start()
     {
         molesList = new List<GameObject>();
@@ -39,10 +41,11 @@ public class WallController : MonoBehaviour
 
         gameObject.transform.position = new Vector3(cam.transform.position.x, cam.transform.position.y - 1.85f, cam.transform.position.z + 1); //The wall follows the camera
 
-        if (totalMissedMoles + redWhacked > maxMissed) //If too much missed -> Game over menu -> we display the results
+        if (totalMissedMoles + redWhacked > maxMissed && !stop) //If too much missed -> Game over menu -> we display the results
         {
             molesBackToNormal(molesList); //We reset the moles materials to normal
             start = false;
+            stop = true;
 
             if (mode == 4)
             {
@@ -139,9 +142,13 @@ public class WallController : MonoBehaviour
         {
             return changeModeValues(6, 3, 1.25f, 2f, 2, 3);
         }
-        else if (totalMolesWhacked > 17)
+        else if (totalMolesWhacked > 17 && totalMolesWhacked <= 24)
         {
             return changeModeValues(8, 2, 0.5f, 1.25f, 3, 2);
+        }
+        else if(totalMolesWhacked  > 24)
+        {           
+            return changeModeValues(10, 2, 0.1f, 0.8f, 3, 2);
         }
         else
         {
@@ -174,8 +181,6 @@ public class WallController : MonoBehaviour
             totalMissedMoles = 0;
             redWhacked = 0;
         }
-
-
         return Random.Range(minRange, maxRange);
     }
 }
