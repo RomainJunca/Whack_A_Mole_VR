@@ -13,7 +13,7 @@ public class WallController : MonoBehaviour {
     public int mode;
     public bool start = false;
     public int totalMolesWhacked = 0;
-    public int totalMolesMissed = 0;
+    public int totalMissedMoles = 0;
     public int maxMoles = 2;    //Max of moles which can appear at the same time (depending of the level)
     public int maxMissed = 5;   //Max of moles which can be missed before game over (depending of the level)
     public int redMissed = 0;
@@ -33,12 +33,12 @@ public class WallController : MonoBehaviour {
 	void Update () {
 
         gameObject.transform.position = new Vector3(cam.transform.position.x, cam.transform.position.y-1.85f, cam.transform.position.z + 1); //The wall follows the camera
-
-        if(((totalMolesMissed - redMissed)-totalMolesWhacked) > maxMissed) //If too much missed -> Game over menu -> we display the results
+        //   10        -    2       -    12
+        if(totalMissedMoles + redMissed > maxMissed) //If too much missed -> Game over menu -> we display the results
         {
             molesBackToNormal(molesList); //We reset the moles materials to normal
             start = false;
-            gameOver.transform.Find("Results").GetComponent<TextMesh>().text = " \nMoles missed :\n"+ ((totalMolesMissed - redMissed)-totalMolesWhacked) + "\n Green moles whacked:\n"+totalMolesWhacked+"\n Red moles whacked:\n"+redMissed+"\n ";
+            gameOver.transform.Find("Results").GetComponent<TextMesh>().text = " \nMoles missed :\n"+ totalMissedMoles + "\n Green moles whacked:\n"+totalMolesWhacked+"\n Red moles whacked:\n"+redMissed+"\n ";
             gameOver.SetActive(true);
         }
 
@@ -47,11 +47,6 @@ public class WallController : MonoBehaviour {
             timer += Time.deltaTime;
             if (timer >= rndTime) //We select a new mole every random timer
             {
-                //totalMolesMissed = totalMolesMissed - totalMolesWhacked;
-                if (currentMole && currentMole.GetComponent<Mole>().currentColor == "green")
-                {
-                    totalMolesMissed++;
-                }
                 currentMole = selectMole(molesList);
                 timer = 0.0f;
                 rndTime = generateTimer(mode);
@@ -140,7 +135,7 @@ public class WallController : MonoBehaviour {
         {
             maxMoles = 8;
             maxMissed = 2;
-            return Random.Range(0.2f, 0.8f);
+            return Random.Range(0.2f, 0.9f);
         }
         else
         {

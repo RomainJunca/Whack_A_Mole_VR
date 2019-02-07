@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Mole : MonoBehaviour{
+public class Mole : MonoBehaviour
+{
 
     public bool isActive = false;
     public int redOdds = 8;
@@ -10,6 +11,8 @@ public class Mole : MonoBehaviour{
     public string currentColor;
     public bool startShining = true;
     public float timer = 0f;
+
+    private WallController wallCtrl;
 
     private GameController gmCtrl;
     private float lifeTime = 5f;
@@ -20,6 +23,7 @@ public class Mole : MonoBehaviour{
     {
         wii = gameObject.GetComponent<AudioSource>();
         gmCtrl = GameObject.Find("GameController").GetComponent<GameController>();
+        wallCtrl = GameObject.Find("Wall").GetComponent<WallController>();
     }
 
     void Update()
@@ -37,6 +41,10 @@ public class Mole : MonoBehaviour{
                 timer = 0;
                 startShining = true;
                 isActive = false;
+                if (currentColor == "green")
+                {
+                    wallCtrl.totalMissedMoles++;
+                }
             }
             else
             {
@@ -47,6 +55,10 @@ public class Mole : MonoBehaviour{
                 }
                 startNormal = true;
             }
+        }
+        else
+        {
+
         }
     }
 
@@ -64,21 +76,22 @@ public class Mole : MonoBehaviour{
             addMaterials("red");
             currentColor = "red";
         }
-        
+
         wii.time = 0.52f; //Play directly at the beginning of the sound
-        wii.spatialBlend =  1; //Add stereo audio
+        wii.spatialBlend = 1; //Add stereo audio
         wii.Play();
     }
 
     public void glow()
     {
-        if(isActive){
-            if(moleMaterial[1].name == "green")
+        if (isActive)
+        {
+            if (moleMaterial[1].name == "green")
             {
                 addMaterials("green_Glow");
 
             }
-            else if(moleMaterial[1].name == "red")
+            else if (moleMaterial[1].name == "red")
             {
                 addMaterials("red_Glow");
             }
