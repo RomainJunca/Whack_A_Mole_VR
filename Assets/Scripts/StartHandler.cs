@@ -41,7 +41,6 @@ public class StartHandler : MonoBehaviour {
                 if (clicked == 1) clicktime = Time.deltaTime;
                 if (clicked > 1 && Time.deltaTime - clicktime < clickdelay)
                 {
-                    print("DOUBLE CLICK");
                     if(currentModeString != "")
                     {
                         if(currentModeString == currentModeStringClicked)

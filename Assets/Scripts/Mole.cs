@@ -11,11 +11,11 @@ public class Mole : MonoBehaviour
     public string currentColor;
     public bool startShining = true;
     public float timer = 0f;
+    public float lifeTime = 5f;
 
     private WallController wallCtrl;
 
     private GameController gmCtrl;
-    private float lifeTime = 5f;
     private bool startNormal = true;
     private Material[] moleMaterial = new Material[2];
 

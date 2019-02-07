@@ -23,7 +23,6 @@ public class WallController : MonoBehaviour
     private float rndTime = 1f;
     private GameObject currentMole;
     private int indexCurrentMole;
-    private float moleLifeTime = 1f;
     private int doOnce = 0;
 
     private int totalMissedMolesSave = 0, redWhackedSave = 0;
@@ -131,22 +130,22 @@ public class WallController : MonoBehaviour
 
     private float gradual() //The timer changes gradually depending on the number of the whacked moles
     {
-        //For each step in this mode, we change/reste values such as : max moles that can be missed, nbr of moles (green or red) whacked, and new range of appearances.
+        //For each step in this mode, we change/reste values such as : max moles that can be missed, nbr of moles (green or red) whacked, and new range and time of appearances.
         if (totalMolesWhacked > 4 && totalMolesWhacked <= 8)
         {
-            return changeModeValues(4, 4, 1.5f, 3f, 1);
+            return changeModeValues(4, 4, 2f, 2.75f, 1, 4);
         }
         else if (totalMolesWhacked > 9 && totalMolesWhacked <= 16)
         {
-            return changeModeValues(6, 3, 0.9f, 1.5f, 2);
+            return changeModeValues(6, 3, 1.25f, 2f, 2, 3);
         }
         else if (totalMolesWhacked > 17)
         {
-            return changeModeValues(8, 2, 0.2f, 0.9f, 3);
+            return changeModeValues(8, 2, 0.5f, 1.25f, 3, 2);
         }
         else
         {
-            return changeModeValues(2, 5, 3f, 4f, 0);
+            return changeModeValues(2, 5, 2.75f, 3.5f, 0, 5);
         }
     }
 
@@ -161,10 +160,11 @@ public class WallController : MonoBehaviour
         }
     }
 
-    private float changeModeValues(int molesMax, int missedMax, float minRange, float maxRange, int step)
+    private float changeModeValues(int molesMax, int missedMax, float minRange, float maxRange, int step, int life)
     {
         maxMoles = molesMax;
         maxMissed = missedMax;
+        currentMole.GetComponent<Mole>().lifeTime = life;
 
         if (doOnce == step) //We have to do it only once per step/mode
         {
