@@ -22,43 +22,94 @@ A double click or an enter key pressed will launch the mode.
 There is four modes on this game, four differents difficulty modes in which the different parameters are changed:
 
 In the three first moles, the life time of a mole when it appears is 5s.
-Easy Mode :
+
+
+## Easy Mode :
+
 A maximum of 2 moles can appear at the same time.
+
 You can miss 5 of them (including if a red mole is whacked which add a missed mole to the count) before game over.
+
 The range of time between two moles'appearances can go from 3s to 4s.
 
-Medium Mode :
+
+## Medium Mode :
+
 A maximum of 4 moles can appear at the same time.
+
 You can miss 3 of them (including if a red mole is whacked which add a missed mole to the count) before game over.
+
 The range of time between two moles'appearances can go from 1.5s to 3s.
 
-Hard Mode :
+
+## Hard Mode :
+
 A maximum of 6 moles can appear at the same time.
+
 You can miss 2 of them (including if a red mole is whacked which add a missed mole to the count) before game over.
+
 The range of time between two moles'appearances can go from 0.5s to 1.5s.
 
-Gradual Mode :
+
+## Gradual Mode :
+
 The difficulty of this mode will be gradually increased as the game goes on. At each step (each number of whacked green moles), the parameters are changed.
-Until 4 whacked moles :
+
+
+**Until 4 whacked moles :** 
+
 A maximum of 2 moles can appear at the same time.
+
 You can miss 5 of them (including if a red mole is whacked which add a missed mole to the count) before game over.
+
 The life time of a mole when it appears is 5s.
+
 The range of time between two moles'appearances can go from 2.75s to 3.5s.
-From 4 to 9 whacked moles :
+
+
+**From 4 to 9 whacked moles :** 
+
 Max moles : 4
+
 Max missed : 4
+
 Life time : 4s
+
 Range :  From 2s to 2.75s
-From 9 to 16 whacked moles :
+
+
+**From 9 to 16 whacked moles :** 
+
 Max moles : 6
+
 Max missed : 3
+
 Life time : 3s
+
 Range : From 1.25s to 2s
-From 16 whacked moles :
+
+
+**From 16 to 24 whacked moles :** 
+
 Max moles : 8
+
 Max missed : 2
+
 Life time : 2s
+
 Range : From 0.5s to 1.25s
+
+
+**From 24 whacked moles :** 
+
+Max moles : 10
+
+Max missed : 2
+
+Life time : 2s
+
+Range : From 0.1s to 0.8s
+
 
 At each step, the counters are put down to zero (If you missed 4 moles in the first step, the missed moles count will be zero again at the beginning 
 of the second step). The total numbers are saved to be displayed on the game over wall.
@@ -68,6 +119,8 @@ When the user misses more moles than the maximum number of missed whole allowed,
 see the total number of moles whacked, moles missed, and red moles whacked.
 
 A lot of things can still be modified, or added (changing the sounds of the red moles/adding a restart and/or retry key/...), this project is the work of less than 1 week.
+
+Last tested in the morning of February the 8th, 2019.
 
 
 Installation
