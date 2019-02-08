@@ -131,7 +131,7 @@ public class WallController : MonoBehaviour
     private float gradual() //The timer changes gradually depending on the number of the whacked moles
     {
         //For each step in this mode, we change/reste values such as : max moles that can be missed, nbr of moles (green or red) whacked, and new range and time of appearances.
-        if (totalMolesWhacked > 4 && totalMolesWhacked <= 8)
+        if (totalMolesWhacked > 4 && totalMolesWhacked <= 9)
         {
             return changeModeValues(4, 4, 2f, 2.75f, 1, 4);
         }
@@ -139,7 +139,7 @@ public class WallController : MonoBehaviour
         {
             return changeModeValues(6, 3, 1.25f, 2f, 2, 3);
         }
-        else if (totalMolesWhacked > 17)
+        else if (totalMolesWhacked > 16)
         {
             return changeModeValues(8, 2, 0.5f, 1.25f, 3, 2);
         }
