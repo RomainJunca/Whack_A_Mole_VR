@@ -142,7 +142,7 @@ public class WallController : MonoBehaviour
         {
             return changeModeValues(6, 3, 1.25f, 2f, 2, 3);
         }
-        else if (totalMolesWhacked > 17 && totalMolesWhacked <= 24)
+        else if (totalMolesWhacked > 16 && totalMolesWhacked <= 24)
         {
             return changeModeValues(8, 2, 0.5f, 1.25f, 3, 2);
         }
