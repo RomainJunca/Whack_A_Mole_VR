@@ -54,11 +54,16 @@ Max moles : 6
 Max missed : 3
 Life time : 3s
 Range : From 1.25s to 2s
-From 16 whacked moles :
+From 16 to 24 whacked moles :
 Max moles : 8
 Max missed : 2
 Life time : 2s
 Range : From 0.5s to 1.25s
+From 24 whacked moles :
+Max moles : 10
+Max missed : 2
+Life time : 2s
+Range : From 0.1s to 0.8s
 
 At each step, the counters are put down to zero (If you missed 4 moles in the first step, the missed moles count will be zero again at the beginning 
 of the second step). The total numbers are saved to be displayed on the game over wall.
