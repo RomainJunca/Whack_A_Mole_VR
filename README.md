@@ -120,6 +120,8 @@ see the total number of moles whacked, moles missed, and red moles whacked.
 
 A lot of things can still be modified, or added (changing the sounds of the red moles/adding a restart and/or retry key/...), this project is the work of less than 1 week.
 
+Last tested in the morning of February the 8th, 2019.
+
 
 Installation
 ------------
