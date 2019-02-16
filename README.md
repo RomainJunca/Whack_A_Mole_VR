@@ -21,7 +21,7 @@ A double click or an enter key pressed will launch the mode.
 
 There is four modes on this game, four differents difficulty modes in which the different parameters are changed:
 
-In the three first moles, the life time of a mole when it appears is 5s.
+In the first three modes, the life time of a mole when it appears is 5s.
 
 
 ## Easy Mode :
