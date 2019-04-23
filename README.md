@@ -1,7 +1,6 @@
-# Whack_A_Mole_VR
-Whack_A_Mole VR Game made with Unity
+# Whack-A-Mole VR Game made with Unity
 ========
-
+![Whack A Mole VR In-Game Screenshot](https://raw.githubusercontent.com/med-material/Whack_A_Mole_VR/master/game.png)
 The Whack_A_Mole VR environment provides a test for the Pupil Labs Calibration environment, used with the Pupil Labs plugin for eye-tracking in VR. The main goal
 of this project is to be used in clinics for rehabilitation of visual neglected people.
 This kind of game helps the patients to focus and think faster, it pushes him to observe more his environment. In addition to the fun of playing the game for the patient, which is
@@ -20,6 +19,7 @@ In the menu, you can ether choose the mode by pressing "1/2/3/4" on the keyboard
 A double click or an enter key pressed will launch the mode.
 
 There is four modes on this game, four differents difficulty modes in which the different parameters are changed:
+![Whack A Mole Difficulty Selection](https://raw.githubusercontent.com/med-material/Whack_A_Mole_VR/master/Menu2.png)
 
 In the first three modes, the life time of a mole when it appears is 5s.
 
@@ -117,6 +117,8 @@ of the second step). The total numbers are saved to be displayed on the game ove
 
 When the user misses more moles than the maximum number of missed whole allowed, the game stop and a game over wall appears, in which we can
 see the total number of moles whacked, moles missed, and red moles whacked.
+![Whack A Mole Game Over Screen](https://raw.githubusercontent.com/med-material/Whack_A_Mole_VR/master/gameover.png)
+
 
 A lot of things can still be modified, or added (changing the sounds of the red moles/adding a restart and/or retry key/...), this project is the work of less than 1 week.
 
