@@ -13,7 +13,7 @@ The game is a simple Whack-a-mole, but in VR. In the VR environment, the partici
 The environment provides many features to customise the game, with multiple parameters and modifiers:
 
 - Logging parameters: 
-  - Participant ID: allows to keep track of the participant for data analysis
+  - Participant ID: allows to keep track of the participant for data analysis (across sessions)
   - Test ID: allows to keep track of the test number for data analysis
 
 - Game modifiers: 
