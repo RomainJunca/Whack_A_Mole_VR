@@ -141,7 +141,7 @@ public abstract class Pointer : MonoBehaviour
         Vector3 rayDirection = GetRayDirection();
 
         RaycastHit hit;
-        if (Physics.Raycast(transform.position + laserOrigin, rayDirection, out hit, 100f))
+        if (Physics.Raycast(transform.position + laserOrigin, rayDirection, out hit, 100f, Physics.DefaultRaycastLayers))
         {
             UpdateLaser(true, hitPosition: transform.InverseTransformPoint(hit.point));
             hoverMole(hit);
@@ -299,7 +299,7 @@ public abstract class Pointer : MonoBehaviour
     private Vector3 GetSnappedDirection()
     {
         RaycastHit hit;
-        if (Physics.Raycast(transform.position + laserOrigin, transform.forward, out hit, 100f))
+        if (Physics.Raycast(transform.position + laserOrigin, transform.forward, out hit, 100f, Physics.DefaultRaycastLayers))
         {
             Collider[] collidersHit = Physics.OverlapSphere(hit.point, SnapMagnetizeRadius);
 
@@ -334,7 +334,7 @@ public abstract class Pointer : MonoBehaviour
     private Vector3 GetMagnetizedDirection()
     {
         RaycastHit hit;
-        if (Physics.Raycast(transform.position + laserOrigin, transform.forward, out hit, 100f))
+        if (Physics.Raycast(transform.position + laserOrigin, transform.forward, out hit, 100f, Physics.DefaultRaycastLayers))
         {
             Collider[] collidersHit = Physics.OverlapSphere(hit.point, SnapMagnetizeRadius);
 
