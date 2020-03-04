@@ -77,7 +77,7 @@ public class EventLogger : MonoBehaviour
     public void UpdateEmail(string newEmail)
     {
         if (email == newEmail) return;
-        email = newEmail;
+        email = newEmail.Replace("\n","").Replace("\r",""); // sanitize e-mail, to not contain newline characters.
     }
 
     // Function mostly called from the LoggerNotifier. Adds to the logs the columns (parameters) that will be used.
