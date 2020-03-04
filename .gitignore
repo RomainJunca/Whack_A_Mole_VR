@@ -8,6 +8,10 @@ Library/
 [Ll]ogs/
 [Aa]ssets/AssetStoreTools*
 
+# credential files
+mysql_auth.txt
+mysql_auth.txt.meta
+
 # Visual Studio cache directory
 .vs/
 
