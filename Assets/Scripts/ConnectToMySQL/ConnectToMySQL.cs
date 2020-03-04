@@ -4,9 +4,20 @@ using System.Collections;
 using System.IO;
 using System;
 using UnityEngine.Networking;
+using UnityEngine.Events;
 using System.Text;
 using System.Linq;
 using UnityEngine.UI;
+
+public enum LogUploadStatus {
+    Success,
+    Error,
+}
+
+public class LogUploadResult {
+	public LogUploadStatus status;
+	public string error;
+}
 
 public class ConnectToMySQL : MonoBehaviour {
 	public static string response = "";
@@ -58,6 +69,11 @@ public class ConnectToMySQL : MonoBehaviour {
 	private GameObject connectButton;
 
 	private GameObject eventSystem;
+
+	[Serializable]
+    public class OnLogsUploaded : UnityEvent<LogUploadResult> { }
+    public OnLogsUploaded onLogsUploaded;
+
 	void Awake() {
 		if (statusMessage != null) {
 			defaultColor = statusMessage.color;
@@ -219,6 +235,12 @@ public class ConnectToMySQL : MonoBehaviour {
 				} else if (logCollection[key][i].Contains("\"")) {
 					Debug.LogWarning("Value " + logCollection[key] + "from column " + key + "contains quotation mark (\"). It has been replaced with a dash.");
 					logCollection[key][i].Replace('\"', '-');
+				} else if (logCollection[key][i].Contains("\n")) {
+					Debug.LogWarning("Value " + logCollection[key] + "from column " + key + "contains return character. It has been removed.");
+					logCollection[key][i].Replace("\n", String.Empty);
+				} else if (logCollection[key][i].Contains("\r")) {
+					Debug.LogWarning("Value " + logCollection[key] + "from column " + key + "contains return character. It has been removed.");
+					logCollection[key][i].Replace("\r", String.Empty);
 				}
 				row.Add(logCollection[key][i]);
 			}
@@ -263,7 +285,11 @@ public class ConnectToMySQL : MonoBehaviour {
 
 		yield return www.SendWebRequest();
 
+		LogUploadResult logUploadResult = new LogUploadResult();
 		if(www.isNetworkError || www.isHttpError) {
+			logUploadResult.status = LogUploadStatus.Error;
+			logUploadResult.error = www.error;
+			onLogsUploaded.Invoke(logUploadResult);
             Debug.LogError(("Unable to submit logs: " + www.error));
 			if (statusMessage != null) {
 				statusMessage.text = (www.downloadHandler.text);
@@ -285,6 +311,9 @@ public class ConnectToMySQL : MonoBehaviour {
 			// Clear datadump structures in case we are submitting dumped data
 			dataDumps.Clear();
 			colDumps.Clear();
+			logUploadResult.status = LogUploadStatus.Success;
+			logUploadResult.error = "";
+			onLogsUploaded.Invoke(logUploadResult);
 		}
 
 	}
