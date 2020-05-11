@@ -66,6 +66,7 @@ public class EventLogger : MonoBehaviour
 
         logs.Add("TimeStamp", new Dictionary<int, string>());
         logs.Add("Time", new Dictionary<int, string>());
+        logs.Add("Framecount", new Dictionary<int, string>());
         logs.Add("Date", new Dictionary<int, string>());
         logs.Add("TimeSinceLastEvent", new Dictionary<int, string>());
         logs.Add("PupilTime", new Dictionary<int, string>());
@@ -259,6 +260,7 @@ public class EventLogger : MonoBehaviour
     // the PersistentEvents parameters to the row when generating it.
     private void GenerateLine(Dictionary<string, object> log)
     {
+        logs["Framecount"].Add(logCount, Time.frameCount.ToString());
         logs["TimeStamp"].Add(logCount, GetTimeStamp());
         logs["Date"].Add(logCount, System.DateTime.Now.ToString("yyyy-MM-dd"));
         logs["Time"].Add(logCount, System.DateTime.Now.ToString("HH:mm:ss.ffff"));
