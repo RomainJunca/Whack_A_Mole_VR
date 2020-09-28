@@ -135,11 +135,11 @@ public class GameDirector : MonoBehaviour
     public void StopGame()
     {
         if (gameState == GameState.Stopped) return;
-        FinishGame();
         loggerNotifier.NotifyLogger("Game Stopped", EventLogger.EventType.GameEvent, new Dictionary<string, object>()
         {
             {"GameState", System.Enum.GetName(typeof(GameDirector.GameState), gameState)}
         });
+        FinishGame();
     }
 
     // Pauses/unpauses the game.
