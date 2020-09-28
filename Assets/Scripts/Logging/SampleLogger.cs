@@ -19,8 +19,11 @@ public class SampleLogger : MonoBehaviour
     [SerializeField]
     float samplingFrequency = 0.02f;
 
+    //[SerializeField]
+    //private PupilLabs.TimeSync timeSync;
+
     [SerializeField]
-    private PupilLabs.TimeSync timeSync;
+    private GazeLogger gazeLogger;
 
     private TrackerHub trackerHub = new TrackerHub();
 
@@ -58,7 +61,6 @@ public class SampleLogger : MonoBehaviour
     // If game state updated event is raised (by the gameDirector), updates the UI accordingly.
     public void OnGameDirectorStateUpdate(GameDirector.GameState newState)
     {
-        Debug.Log("Called");
         switch(newState)
         {
             case GameDirector.GameState.Stopped:
@@ -96,8 +98,8 @@ public class SampleLogger : MonoBehaviour
             logs["Date"].Add(logCount, System.DateTime.Now.ToString("yyyy-MM-dd"));
             logs["Event"].Add(logCount, "Sample");
             logs["Time"].Add(logCount, System.DateTime.Now.ToString("HH:mm:ss.ffff"));
-            logs["PupilTime"].Add(logCount, timeSync != null ? timeSync.GetPupilTimestamp().ToString() : "NULL");
-            logs["UnityToPupilTimeOffset"].Add(logCount, timeSync != null ? timeSync.UnityToPupilTimeOffset.ToString() : "NULL");
+            //logs["PupilTime"].Add(logCount, timeSync != null ? timeSync.GetPupilTimestamp().ToString() : "NULL");
+            //logs["UnityToPupilTimeOffset"].Add(logCount, timeSync != null ? timeSync.UnityToPupilTimeOffset.ToString() : "NULL");
 
             // Adds the parameters of the objects tracked by the TrackerHub's trackers
             Dictionary<string, object> trackedLogs = trackerHub.GetTracks();
@@ -114,6 +116,22 @@ public class SampleLogger : MonoBehaviour
                 }
             }
 
+            // Adds the parameters from GazeLogger
+            if (gazeLogger != null) {
+                Dictionary<string, object> gazeLogs = gazeLogger.GetGazeData();
+                foreach (KeyValuePair<string, object> pair in gazeLogs)
+                {
+                    if (logs.ContainsKey(pair.Key))
+                    {
+                        logs[pair.Key].Add(logCount, ConvertToString(pair.Value));
+                    }
+                    else
+                    {
+                        logs.Add(pair.Key, new Dictionary<int, string>{{logCount, ConvertToString(pair.Value)}});
+                    }
+                }
+            }
+
             logCount++;
             yield return new WaitForSeconds(sampleFreq);
         }
@@ -127,9 +145,17 @@ public class SampleLogger : MonoBehaviour
         {
             return ((float)arg).ToString("0.0000").Replace(",", ".");
         }
+        else if (arg is double)
+        {
+            return ((double)arg).ToString("0.0000").Replace(",", ".");
+        }
         else if (arg is Vector3)
         {
             return ((Vector3)arg).ToString("0.0000").Replace(",", ".");
+        } 
+        else if (arg is string) 
+        {
+            return (string)arg;
         }
         else
         {
