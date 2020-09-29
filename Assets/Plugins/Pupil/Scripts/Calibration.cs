@@ -50,23 +50,16 @@ namespace PupilLabs
             requestCtrl.Send(new Dictionary<string, object> {
                 { "subject","calibration.should_start" },
                 {
-                    "hmd_video_frame_size",
-                    new float[] {
-                        1000,
-                        1000
-                    }
-                },
-                {
-                    "outlier_threshold",
-                    35
-                },
-                {
                     "translation_eye0",
                     rightEyeTranslation
                 },
                 {
                     "translation_eye1",
                     leftEyeTranslation
+                },
+                {
+                    "record",
+                    true
                 }
             });
 
@@ -80,12 +73,6 @@ namespace PupilLabs
             calibrationData.Add(new Dictionary<string, object>() {
                 { settings.PositionKey, position },
                 { "timestamp", timestamp },
-                { "id", int.Parse(Helpers.rightEyeID) }
-            });
-            calibrationData.Add(new Dictionary<string, object>() {
-                { settings.PositionKey, position },
-                { "timestamp", timestamp },
-                { "id", int.Parse(Helpers.leftEyeID) }
             });
         }
 
@@ -98,6 +85,10 @@ namespace PupilLabs
                 {
                     "ref_data",
                     calibrationData.ToArray ()
+                },
+                {
+                    "record",
+                    true
                 }
             });
 
@@ -111,7 +102,16 @@ namespace PupilLabs
 
             IsCalibrating = false;
 
-            Send(new Dictionary<string, object> { { "subject", "calibration.should_stop" } });
+            Send(new Dictionary<string, object> {
+                {
+                    "subject",
+                    "calibration.should_stop"
+                },
+                {
+                    "record",
+                    true
+                }
+            });
         }
 
         public void Destroy()

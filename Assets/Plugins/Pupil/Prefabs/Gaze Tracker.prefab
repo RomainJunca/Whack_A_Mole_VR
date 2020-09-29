@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2133880014088891457}
   - component: {fileID: 2239290036612086}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: Time Sync
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -52,17 +52,17 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 2745060885749746398}
+  - component: {fileID: 5106638730653587895}
   - component: {fileID: 4592039751627001873}
   - component: {fileID: 4268978783721493796}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: Raw Gaze Direction Hit Marker
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &2745060885749746398
+--- !u!4 &5106638730653587895
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -70,8 +70,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5493404500924273897}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 465.5, y: 262, z: 0.039276563}
-  m_LocalScale: {x: 0.07273438, y: 0.07273438, z: 0.004848958}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.15, y: 0.15, z: 0.01}
   m_Children: []
   m_Father: {fileID: 5759569964053480820}
   m_RootOrder: 1
@@ -109,7 +109,6 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -132,7 +131,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5759569962606769656}
   - component: {fileID: 2480693394737437415}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: Gaze Controller
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -244,7 +243,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5759569962967085357}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: Gaze Tracker
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -277,17 +276,17 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 8138921031918675979}
+  - component: {fileID: 5759569963728653534}
   - component: {fileID: 5759569963728653533}
   - component: {fileID: 5759569963728653535}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: Raycast Hit Marker
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &8138921031918675979
+--- !u!4 &5759569963728653534
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -295,8 +294,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5759569963728653529}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 465.5, y: 262, z: 0.04848958}
-  m_LocalScale: {x: 0.019395832, y: 0.019395832, z: 0.019395832}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.04, y: 0.04, z: 0.04}
   m_Children: []
   m_Father: {fileID: 5759569964053480820}
   m_RootOrder: 0
@@ -334,7 +333,6 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -358,7 +356,7 @@ GameObject:
   - component: {fileID: 5759569964053480820}
   - component: {fileID: 5759569964053480821}
   - component: {fileID: 2445543737758967877}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: Gaze Visualizer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -376,8 +374,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 8138921031918675979}
-  - {fileID: 2745060885749746398}
+  - {fileID: 5759569963728653534}
+  - {fileID: 5106638730653587895}
   m_Father: {fileID: 5759569962606769656}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -397,8 +395,8 @@ MonoBehaviour:
   gazeController: {fileID: 2480693394737437415}
   confidenceThreshold: 0.65
   binocularOnly: 0
-  projectionMarker: {fileID: 8138921031918675979}
-  gazeDirectionMarker: {fileID: 2745060885749746398}
+  projectionMarker: {fileID: 5759569963728653534}
+  gazeDirectionMarker: {fileID: 5106638730653587895}
   sphereCastRadius: 0.05
 --- !u!114 &2445543737758967877
 MonoBehaviour:
@@ -426,7 +424,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc74cf04527c7564c9fac46288fca3db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mainCamera: {fileID: 0}
 --- !u!1001 &1117858702864642361
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -438,11 +435,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Eye Frame Visualizer
-      objectReference: {fileID: 0}
-    - target: {fileID: 4642495214453592291, guid: 2c67456b2479c16409bdee4d0f3fd472,
-        type: 3}
-      propertyPath: m_Layer
-      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4642495214453592288, guid: 2c67456b2479c16409bdee4d0f3fd472,
         type: 3}
@@ -537,10 +529,6 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 475007391, guid: 9bd01c5da450e6241b7acf3ddf6028d9, type: 3}
-      propertyPath: m_Layer
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 275375132, guid: 9bd01c5da450e6241b7acf3ddf6028d9, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -585,14 +573,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 324138762, guid: 9bd01c5da450e6241b7acf3ddf6028d9, type: 3}
-      propertyPath: m_Layer
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1180250347, guid: 9bd01c5da450e6241b7acf3ddf6028d9, type: 3}
-      propertyPath: m_Layer
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9bd01c5da450e6241b7acf3ddf6028d9, type: 3}
 --- !u!4 &5759569963246519125 stripped
@@ -612,11 +592,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Connection
-      objectReference: {fileID: 0}
-    - target: {fileID: 5849980755848409804, guid: 7cfc3ae6b3612574fa51b53532335333,
-        type: 3}
-      propertyPath: m_Layer
-      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5849980755848409806, guid: 7cfc3ae6b3612574fa51b53532335333,
         type: 3}
@@ -717,11 +692,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Status Text
       objectReference: {fileID: 0}
-    - target: {fileID: 434736744412245043, guid: efba1042cb327d945953eb7addc2989c,
-        type: 3}
-      propertyPath: m_Layer
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 434736744412245452, guid: efba1042cb327d945953eb7addc2989c,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -777,16 +747,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 434736745618052017, guid: efba1042cb327d945953eb7addc2989c,
-        type: 3}
-      propertyPath: m_Layer
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 434736744918915886, guid: efba1042cb327d945953eb7addc2989c,
-        type: 3}
-      propertyPath: m_Layer
-      value: 2
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: efba1042cb327d945953eb7addc2989c, type: 3}
 --- !u!1 &8807455923528386437 stripped
@@ -810,6 +770,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
