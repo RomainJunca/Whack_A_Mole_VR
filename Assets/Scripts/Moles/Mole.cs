@@ -30,6 +30,7 @@ public abstract class Mole : MonoBehaviour
     private float lifeTime;
     private float expiringTime;
     private int id = -1;
+    private int spawnOrder = -1;
     private float activatedTimeLeft;
     private float expiringTimeLeft;
     private bool isPaused = false;
@@ -55,6 +56,7 @@ public abstract class Mole : MonoBehaviour
             {"MoleLifeTime", "NULL"},
             {"MoleActivatedDuration", "NULL"},
             {"MoleId", "NULL"},
+            {"MoleSpawnOrder", "NULL"},
             {"MoleIndexX", "NULL"},
             {"MoleIndexY", "NULL"},
             {"MoleNormalizedIndexX", "NULL"},
@@ -62,6 +64,11 @@ public abstract class Mole : MonoBehaviour
             {"MoleSurfaceHitLocationX", "NULL"},
             {"MoleSurfaceHitLocationY", "NULL"}
         });
+    }
+
+    public void SetSpawnOrder(int newSpawnOrder)
+    {
+        spawnOrder = newSpawnOrder;
     }
 
     public void SetId(int newId)
@@ -72,6 +79,11 @@ public abstract class Mole : MonoBehaviour
     public void SetNormalizedIndex(Vector2 newNormalizedIndex)
     {
         normalizedIndex = newNormalizedIndex;
+    }
+
+    public int GetSpawnOrder()
+    {
+        return spawnOrder;
     }
 
     public int GetId()
@@ -85,11 +97,12 @@ public abstract class Mole : MonoBehaviour
         return (!(state == States.Enabled || state == States.Enabling || state == States.Disabling));
     }
 
-    public void Enable(float enabledLifeTime, float expiringDuration, bool isFake = false)
+    public void Enable(float enabledLifeTime, float expiringDuration, bool isFake = false, int moleSpawnOrder = -1)
     {
         fake = isFake;
         lifeTime = enabledLifeTime;
         expiringTime = expiringDuration;
+        spawnOrder = moleSpawnOrder;
         ChangeState(States.Enabling);
     }
 
@@ -337,6 +350,7 @@ public abstract class Mole : MonoBehaviour
             {"MoleSize", (this.GetComponentsInChildren<Renderer>()[0].bounds.max.x - this.GetComponentsInChildren<Renderer>()[0].bounds.min.x)},
             {"MoleLifeTime", lifeTime},
             {"MoleId", id.ToString("0000")},
+            {"MoleSpawnOrder", spawnOrder.ToString("0000")},
             {"MoleIndexX", (int)Mathf.Floor(id/100)},
             {"MoleIndexY", (id % 100)},
             {"MoleNormalizedIndexX", normalizedIndex.x},

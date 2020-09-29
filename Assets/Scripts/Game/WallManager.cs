@@ -57,6 +57,7 @@ public class WallManager : MonoBehaviour
     private bool isInit = false;
     private float updateCooldownDuration = .1f;
     private LoggerNotifier loggerNotifier;
+    private int moleCount = 0;
 
     void Start()
     {
@@ -120,7 +121,8 @@ public class WallManager : MonoBehaviour
     {
         if (!active) return;
 
-        GetRandomMole().Enable(lifeTime, moleExpiringDuration, isFake);
+        GetRandomMole().Enable(lifeTime, moleExpiringDuration, isFake, moleCount);
+        moleCount++;
     }
 
     // Activates a specific Mole for a given lifeTime and set if is fake or not
@@ -128,7 +130,8 @@ public class WallManager : MonoBehaviour
     {
         if (!active) return;
         if (!moles.ContainsKey(moleId)) return;
-        moles[moleId].Enable(lifeTime, moleExpiringDuration, isFake);
+        moles[moleId].Enable(lifeTime, moleExpiringDuration, isFake, moleCount);
+        moleCount++;
     }
 
     // Pauses/unpauses the moles
@@ -210,6 +213,7 @@ public class WallManager : MonoBehaviour
             Destroy(mole.gameObject);
         }
         moles.Clear();
+        moleCount = 0;
     }
 
     // Generates the wall of Moles
