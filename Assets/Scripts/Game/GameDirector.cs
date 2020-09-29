@@ -299,12 +299,11 @@ public class GameDirector : MonoBehaviour
 
     private void OnGameEndTimeout()
     {
-        FinishGame();
-
         loggerNotifier.NotifyLogger("Game Finished", EventLogger.EventType.GameEvent, new Dictionary<string, object>()
         {
             {"GameState", System.Enum.GetName(typeof(GameDirector.GameState), gameState)}
         });
+        FinishGame();
     }
 
     void OnApplicationQuit() {
