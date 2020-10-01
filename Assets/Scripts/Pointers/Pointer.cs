@@ -67,6 +67,8 @@ public abstract class Pointer : MonoBehaviour
     private Vector3 smoothingVelocity = Vector3.zero;
     private float lastTime = -1 ;
 
+    private int pointerShootOrder = -1;
+
 
     // On Awake, gets the cursor object if there is one. Also connects the PositionUpdated function to the VR update event.
     void Awake()
@@ -120,6 +122,7 @@ public abstract class Pointer : MonoBehaviour
         }
         state = States.Idle;
         active = true;
+        pointerShootOrder = -1;
     }
 
     // Disables the pointer
@@ -157,6 +160,7 @@ public abstract class Pointer : MonoBehaviour
             {
                 if (state == States.Idle)
                 {
+                    pointerShootOrder++;
                     loggerNotifier.NotifyLogger(overrideEventParameters: new Dictionary<string, object>(){
                         {"ControllerSmoothed", directionSmoothed},
                         {"ControllerAimAssistState", System.Enum.GetName(typeof(Pointer.AimAssistStates), aimAssistState)},
@@ -165,11 +169,13 @@ public abstract class Pointer : MonoBehaviour
                         {"LastShotControllerRawPointingDirectionZ", transform.forward.z},
                         {"LastShotControllerFilteredPointingDirectionX", rayDirection.x},
                         {"LastShotControllerFilteredPointingDirectionY", rayDirection.y},
-                        {"LastShotControllerFilteredPointingDirectionZ", rayDirection.z}
+                        {"LastShotControllerFilteredPointingDirectionZ", rayDirection.z},
                     });
 
-                    loggerNotifier.NotifyLogger("Pointer Shoot", EventLogger.EventType.PointerEvent);
-
+                    loggerNotifier.NotifyLogger("Pointer Shoot", EventLogger.EventType.PointerEvent, new Dictionary<string, object>()
+                    {
+                        {"PointerShootOrder", pointerShootOrder}
+                    });
                     Shoot(hit);
                 }
             }
