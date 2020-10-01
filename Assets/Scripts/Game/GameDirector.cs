@@ -94,7 +94,9 @@ public class GameDirector : MonoBehaviour
         loggerNotifier.InitPersistentEventParameters(new Dictionary<string, object>(){
             {"GameState", System.Enum.GetName(typeof(GameDirector.GameState), gameState)},
             {"GameDuration", gameDuration.ToString()},
-            {"GameSpeed", gameDifficulty}
+            {"GameSpeed", gameDifficulty},
+            {"GameTimeSpent", 0},
+            {"GameTimeLeft",gameDuration}
         });
     }
 
