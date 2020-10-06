@@ -12,6 +12,9 @@ public class BubbleDisplay : MonoBehaviour
     private GameObject bubbleRender;
 
     [SerializeField]
+    private GameObject controllerRender;
+
+    [SerializeField]
     private bool parentX = true;
 
     [SerializeField]
@@ -55,9 +58,15 @@ public class BubbleDisplay : MonoBehaviour
         Vector3 newPos = new Vector3(newPosX, newPosY, newPosZ);
         if (laserMapper.CoordinateWithinMotorSpace(newPos)) {
             this.transform.position = new Vector3(newPosX + offsetX, newPosY + offsetY, newPosZ + offsetZ);
-            if (!bubbleRender.active) bubbleRender.SetActive(true);
+            if (!bubbleRender.active) {
+                bubbleRender.SetActive(true);
+                controllerRender.SetActive(false);
+            }
         } else {
-            if (bubbleRender.active) bubbleRender.SetActive(false);
+            if (bubbleRender.active) {
+                bubbleRender.SetActive(false);
+                controllerRender.SetActive(true);
+            }
         }
     }
 }
