@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Events;
 
 public class BubbleDisplay : MonoBehaviour
 {
@@ -50,7 +51,12 @@ public class BubbleDisplay : MonoBehaviour
     private float newPosZ;
 
     private Vector3 ownPosition;
+
+    [System.Serializable]
+    public class EnterMotorSpaceEvent : UnityEvent<bool> {}
+    public EnterMotorSpaceEvent enterMotorStateEvent;
     
+    private bool render = true;
     // Start is called before the first frame update
     void Awake()
     {
@@ -68,16 +74,20 @@ public class BubbleDisplay : MonoBehaviour
         Vector3 newPos = new Vector3(newPosX, newPosY, newPosZ);
         if (laserMapper.CoordinateWithinMotorSpace(newPos)) {
             this.transform.position = new Vector3(newPosX + offsetX, newPosY + offsetY, newPosZ + offsetZ);
-            if (!bubbleRender.active) {
+            if (!render) {
+                render = true;
                 bubbleRender.SetActive(true);
                 controllerRender.SetActive(false);
                 motorSpaceRender.color = motorActiveColor;
+                enterMotorStateEvent.Invoke(true);
             }
         } else {
-            if (bubbleRender.active) {
+            if (render) {
+                render = false;
                 bubbleRender.SetActive(false);
                 controllerRender.SetActive(true);
                 motorSpaceRender.color = motorDisabledColor;
+                enterMotorStateEvent.Invoke(false);
             }
         }
     }

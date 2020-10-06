@@ -111,6 +111,13 @@ public abstract class Pointer : MonoBehaviour
         });
     }
 
+    public void SetPointerEnable(bool active) {
+        if (active) {
+            Enable();
+        } else {
+            Disable();
+        }
+    }
 
     // Enables the pointer
     public void Enable()
