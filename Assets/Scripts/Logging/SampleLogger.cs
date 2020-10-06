@@ -34,6 +34,12 @@ public class SampleLogger : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
+        if (savePath == "") {
+            savePath = System.Environment.GetFolderPath(System.Environment.SpecialFolder.MyDocuments) + "//" + "whack_a_mole_logs";
+            if(!Directory.Exists(savePath)) {    
+                Directory.CreateDirectory(savePath);
+            }
+        }
         logs.Add("Framecount", new Dictionary<int, string>());
         logs.Add("TimeStamp", new Dictionary<int, string>());
         logs.Add("Time", new Dictionary<int, string>());

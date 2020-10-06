@@ -61,6 +61,12 @@ public class EventLogger : MonoBehaviour
     // On start, init the logs with the mandatory columns.
     void Awake()
     {
+        if (savePath == "") {
+            savePath = System.Environment.GetFolderPath(System.Environment.SpecialFolder.MyDocuments) + "//" + "whack_a_mole_logs";
+            if(!Directory.Exists(savePath)) {    
+                Directory.CreateDirectory(savePath);
+            }
+        }
         connectToMySQL = gameObject.GetComponent<ConnectToMySQL>();
         wallStateTracker = gameObject.GetComponent<WallStateTracker>();
 
