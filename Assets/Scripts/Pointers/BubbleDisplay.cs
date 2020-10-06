@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class BubbleDisplay : MonoBehaviour
 {
@@ -35,6 +36,15 @@ public class BubbleDisplay : MonoBehaviour
     [SerializeField]
     private LaserMapper laserMapper;
 
+    [SerializeField]
+    private Image motorSpaceRender;
+
+    [SerializeField]
+    private Color motorActiveColor;
+
+    [SerializeField]
+    private Color motorDisabledColor;
+
     private float newPosX;
     private float newPosY;
     private float newPosZ;
@@ -61,11 +71,13 @@ public class BubbleDisplay : MonoBehaviour
             if (!bubbleRender.active) {
                 bubbleRender.SetActive(true);
                 controllerRender.SetActive(false);
+                motorSpaceRender.color = motorActiveColor;
             }
         } else {
             if (bubbleRender.active) {
                 bubbleRender.SetActive(false);
                 controllerRender.SetActive(true);
+                motorSpaceRender.color = motorDisabledColor;
             }
         }
     }
