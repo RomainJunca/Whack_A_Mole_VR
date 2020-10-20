@@ -17,10 +17,31 @@ public class PatternPlayer: MonoBehaviour
     private bool isRunning = false;
     private bool isPaused = false;
     private PatternInterface patternInterface;
+    private float waitForDuration = -1f;
 
     void Awake()
     {
         patternInterface = FindObjectOfType<PatternInterface>();
+    }
+
+    void Update()
+    {
+        // Check whether we need to wait.
+        if (waitForDuration == -1f) return;
+
+        // if our wait time is 0, we initialize it.
+        if (waitTimeLeft == 0f) waitTimeLeft = waitForDuration;
+
+        // if wait time is above 0, we wait.
+        // if wait time is below 0, wait time is over.
+        if (waitTimeLeft > 0)
+        {
+            if (!isPaused) waitTimeLeft -= Time.deltaTime;
+        } else {
+            waitForDuration = -1f;
+            waitTimeLeft = 0f;
+            PlayStep();
+        }
     }
 
     // Plays the loaded pattern if one is actually loaded.
@@ -32,7 +53,7 @@ public class PatternPlayer: MonoBehaviour
         isPaused = false;
 
         if (sortedKeys[0] == 0f) PlayStep();
-        else StartCoroutine(WaitForDuration(sortedKeys[0]));
+        else waitForDuration = sortedKeys[0];
     }
 
     // Stops the pattern play if it is currently playing.
@@ -105,22 +126,8 @@ public class PatternPlayer: MonoBehaviour
         if (playIndex < sortedKeys.Count - 1)
         {
             playIndex++;
-            StartCoroutine(WaitForDuration(GetWaitTime(playIndex - 1)));
+            waitForDuration = GetWaitTime(playIndex - 1);
         }
     }
 
-    // Waits for a given duration then plays a new step.
-    private IEnumerator WaitForDuration(float duration)
-    {
-        waitTimeLeft = duration;
-        while (waitTimeLeft > 0)
-        {
-            if (!isPaused)
-            {
-                waitTimeLeft -= Time.deltaTime;
-            }
-            yield return null;
-        }
-        PlayStep();
-    }
 }
