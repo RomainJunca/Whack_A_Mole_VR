@@ -1,12 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class LaserMapper : MonoBehaviour
 {
-
-    [SerializeField]
-    private GameObject controllerLeft;
 
     [SerializeField]
     private GameObject controllerRight;
@@ -28,6 +26,11 @@ public class LaserMapper : MonoBehaviour
 
     [SerializeField]
     private float motorSpaceHeight = 1f;
+
+
+    [SerializeField]
+    private Slider motorSpaceSlider;
+    private float multiplier = 1f;
 
     private Vector3 motorSpaceTopLeft = new Vector3(0f,0f,0f);
     private Vector3 motorSpaceTopRight = new Vector3(0f,0f,0f);
@@ -141,16 +144,16 @@ public class LaserMapper : MonoBehaviour
     void CalculateMotorSpace()
     {
         var motorSpaceOrigin = transform.position + motorSpaceOffset;
-        motorSpaceTopLeft = new Vector3(motorSpaceOrigin.x - motorSpaceWidth, motorSpaceOrigin.y + motorSpaceHeight, motorSpaceOrigin.z);
-        motorSpaceTopRight = new Vector3(motorSpaceOrigin.x + motorSpaceWidth, motorSpaceOrigin.y + motorSpaceHeight, motorSpaceOrigin.z);
-        motorSpaceBottomRight = new Vector3(motorSpaceOrigin.x + motorSpaceWidth, motorSpaceOrigin.y - motorSpaceHeight, motorSpaceOrigin.z);
-        motorSpaceBottomLeft = new Vector3(motorSpaceOrigin.x - motorSpaceWidth, motorSpaceOrigin.y - motorSpaceHeight, motorSpaceOrigin.z);
+        motorSpaceTopLeft = new Vector3(motorSpaceOrigin.x - (motorSpaceWidth * multiplier), motorSpaceOrigin.y + (motorSpaceHeight * multiplier), motorSpaceOrigin.z);
+        motorSpaceTopRight = new Vector3(motorSpaceOrigin.x + (motorSpaceWidth * multiplier), motorSpaceOrigin.y + (motorSpaceHeight * multiplier), motorSpaceOrigin.z);
+        motorSpaceBottomRight = new Vector3(motorSpaceOrigin.x + (motorSpaceWidth * multiplier), motorSpaceOrigin.y - (motorSpaceHeight * multiplier), motorSpaceOrigin.z);
+        motorSpaceBottomLeft = new Vector3(motorSpaceOrigin.x - (motorSpaceWidth * multiplier), motorSpaceOrigin.y - (motorSpaceHeight * multiplier), motorSpaceOrigin.z);
     }
 
     void UpdateMotorSpaceVisualizer() {
         motorSpaceVisualizer.transform.position = transform.position + motorSpaceOffset;
         var visRect = motorSpaceVisualizer.GetComponent<RectTransform>();
-        visRect.sizeDelta = new Vector2(motorSpaceWidth * 2, motorSpaceHeight * 2);
+        visRect.sizeDelta = new Vector2(motorSpaceWidth * 2 * multiplier, motorSpaceHeight * 2 * multiplier);
 
     }
 
@@ -172,6 +175,15 @@ public class LaserMapper : MonoBehaviour
     // Whenever the wall udpates we want to recalculate the wallspace.
     public void OnWallUpdated(WallInfo wall) {
         CalculateWallSpace(wall);
+    }
+
+    public void OnSliderSizeValueChanged() {
+        var sliderValue = (float) motorSpaceSlider.value;
+        var highVal = (float) motorSpaceSlider.maxValue;
+        var lowVal = (float) motorSpaceSlider.minValue;
+        multiplier = (sliderValue - lowVal) / highVal;
+        CalculateMotorSpace();
+        UpdateMotorSpaceVisualizer();
     }
 
     public Vector3 ConvertMotorSpaceToWallSpace(Vector3 coord) {
