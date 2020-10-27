@@ -112,6 +112,18 @@ public class WallManager : MonoBehaviour
         isInit = true;
     }
 
+    private void UpdateWallLogs() {
+        loggerNotifier.InitPersistentEventParameters(new Dictionary<string, object>(){
+            {"WallRowCount", rowCount},
+            {"WallColumnCount", columnCount},
+            {"WallSizeX", wallSize.x},
+            {"WallSizeY", wallSize.y},
+            {"WallSizeZ", wallSize.z},
+            {"WallCurveRatioX", xCurveRatio},
+            {"WallCurveRatioY", yCurveRatio}
+        });
+    }
+
     void OnValidate()
     {
         UpdateWall();
@@ -124,6 +136,7 @@ public class WallManager : MonoBehaviour
         if (moles.Count == 0)
         {
             GenerateWall();
+            UpdateWallLogs();
         }
     }
 
