@@ -63,12 +63,7 @@ public class LoggingManager : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
-        filestamp = GetTimeStamp().Replace('/', '-').Replace(":", "-");
-        if (CreateMetaCollection) {
-            GenerateUIDs();
-            Log("Meta", "SessionID", sessionID, LogMode.Overwrite);
-            Log("Meta", "DeviceID", deviceID, LogMode.Overwrite);
-        }
+        NewFilestamp();
         if (savePath == "") {
             savePath = System.Environment.GetFolderPath(System.Environment.SpecialFolder.MyDocuments);
         }
@@ -106,6 +101,20 @@ public class LoggingManager : MonoBehaviour
 
     public void CreateLog(string collectionLabel) {
         collections.Add(collectionLabel, new LogCollection());
+    }
+
+    public void NewFilestamp() {
+        filestamp = GetTimeStamp().Replace('/', '-').Replace(":", "-");
+
+        if (CreateMetaCollection) {
+            GenerateUIDs();
+            Log("Meta", "SessionID", sessionID, LogMode.Overwrite);
+            Log("Meta", "DeviceID", deviceID, LogMode.Overwrite);
+        }
+
+        foreach(KeyValuePair<string, LogCollection> pair in collections) {
+            pair.Value.saveHeaders = true;
+        }
     }
 
     public void Log(string collectionLabel, Dictionary<string, object> logData, LogMode logMode=LogMode.Append) {

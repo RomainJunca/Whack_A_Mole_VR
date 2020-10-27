@@ -170,6 +170,7 @@ public class EventLogger : MonoBehaviour
     // Initialization of the "Current Mole" log, keeping track of the current Mole to hit.
     private void InitCurrentMoleLog()
     {
+        currentMoleLog.Clear();
         currentMoleLog.Add("CurrentMoleToHitId", "NULL");
         currentMoleLog.Add("CurrentMoleToHitIndexX", "NULL");
         currentMoleLog.Add("CurrentMoleToHitIndexY", "NULL");
