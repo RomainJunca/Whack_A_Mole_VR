@@ -127,6 +127,7 @@ public class EventLogger : MonoBehaviour
                 SaveEventDatas(datas);
                 loggingManager.SaveAllLogs();
                 loggingManager.ClearAllLogs();
+                loggingManager.NewFilestamp();
                 break;
             case "Mole Spawned":
                 SaveEventDatas(datas, true, true);
