@@ -61,6 +61,9 @@ public class LaserMapper : MonoBehaviour
     private Vector3 newCenter;
     private List<GameObject> calibPointList = new List<GameObject>();
 
+    [SerializeField]
+    private LoggingManager loggingManager;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -119,9 +122,12 @@ public class LaserMapper : MonoBehaviour
             foreach (var bub in bubbleDisplay) {
                 bub.UpdateOwnPosition(newCenter);
             }
+            LogMotorSpaceChange("MotorSpace Calibration End");
             CalculateMotorSpace();
             UpdateMotorSpaceVisualizer();
             ResetCalibrationValues();
+        } else {
+            LogMotorSpaceChange("MotorSpace Calibration Start");
         }
     }
 
@@ -140,6 +146,20 @@ public class LaserMapper : MonoBehaviour
 
     }
 
+    void LogMotorSpaceChange(string eventLabel) {
+        loggingManager.Log("Event", new Dictionary<string, object>()
+        {
+            {"Event", eventLabel},
+            {"EventType", "MotorSpaceEvent"},
+            {"MotorSpaceWidth", motorSpaceWidth},
+            {"MotorSpaceHeight", motorSpaceHeight},
+            {"MotorSpaceMultiplier", multiplier},
+            {"MotorSpaceCenterPositionX", transform.position.x},
+            {"MotorSpaceCenterPositionY", transform.position.y},
+            {"MotorSpaceCenterPositionZ", transform.position.z},
+        });
+    }
+
     // Update is called once per frame
     void CalculateMotorSpace()
     {
@@ -148,6 +168,7 @@ public class LaserMapper : MonoBehaviour
         motorSpaceTopRight = new Vector3(motorSpaceOrigin.x + (motorSpaceWidth * multiplier), motorSpaceOrigin.y + (motorSpaceHeight * multiplier), motorSpaceOrigin.z);
         motorSpaceBottomRight = new Vector3(motorSpaceOrigin.x + (motorSpaceWidth * multiplier), motorSpaceOrigin.y - (motorSpaceHeight * multiplier), motorSpaceOrigin.z);
         motorSpaceBottomLeft = new Vector3(motorSpaceOrigin.x - (motorSpaceWidth * multiplier), motorSpaceOrigin.y - (motorSpaceHeight * multiplier), motorSpaceOrigin.z);
+        LogMotorSpaceChange("MotorSpace Size Change");
     }
 
     void UpdateMotorSpaceVisualizer() {
